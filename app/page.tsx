@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="m-2 w-full">
+    <main className="p-5 w-full">
       <div className="max-w-lg mx-auto">
         <h1 className="text-4xl font-bold my-16 text-center">
           startups @ harvard
@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </div>
       <div className="max-w-xl mx-auto">
-        <div className="grid grid-cols-2 gap-2 section">
+        <div className="grid sm:grid-cols-2 gap-2 section">
           <Image
             src="/discussion.jpg"
             alt="students discussing startups"
