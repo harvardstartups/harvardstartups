@@ -87,15 +87,3 @@
 a {
   color: #951929ff;
 }
-
-.sectionleft {
-  margin-bottom: 1.5rem;
-  display: flex;
-  text-align: center;
-}
-
-grid-item {
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
