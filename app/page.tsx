@@ -3,19 +3,19 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="p-5 w-full">
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-xl mx-auto">
         <h1 className="text-4xl font-bold my-16 text-center">
           startups @ harvard
         </h1>
 
         <div className="section">
-          <h2>About us</h2>
+          <h2>About</h2>
           <p>
-            startups @ harvard is a community of students who are passionate
-            about startups and the products that will shape the future. We
-            launched in Fall 2023 to bridge the gap between joining big tech or
-            quant and dropping out to start your own company. We are funded by
-            Harvard Computer Society and Women in Computer Science.
+            We are a community of students at Harvard who are passionate about startups
+            and tech products that will shape the future. Launched Fall 2023,
+            we hope to provide a space for CS students to learn about startups together
+            and explore entrepreneurial careers. We are funded by Harvard
+            Computer Society and Women in Computer Science.
           </p>
         </div>
       </div>
@@ -41,18 +41,22 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-xl mx-auto">
         <div className="section">
           <h2>Events</h2>
           <ul className="list-disc ml-8">
             <li>
-              Discussion: we host bi-weekly discussions where we read and
-              discuss up-and-coming startups. Some of the companies we&apos;ve
-              learned about include Pinecone, Glean, Notion, and Vercel.
+              <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose one up-and-coming startup
+              to read about and discuss together.
+              {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
             </li>
             <li>
-              Startup Trek: we will be visiting NYC in February 2024 to visit
-              high-growth startups.
+              <b>Startup Trek</b>: We organize a trip for Harvard students to visit high-growth
+              tech startups and ecosystems in NYC. In February 2024, we'll be taking 12 students to NYC for the
+              first Harvard Startup Trek!
+            </li>
+            <li>
+              <b>And more</b>: community build sessions and on-campus startup talks to come in Spring 2024.
             </li>
           </ul>
         </div>
@@ -67,14 +71,14 @@ export default function Home() {
               className="underline"
             >
               interest form
-            </a>
+            </a>.
           </p>
           <p>
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">
               startupsatharvard@gmail.com
-            </a>
+            </a>.
           </p>
         </div>
       </div>
