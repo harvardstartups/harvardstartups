@@ -46,17 +46,17 @@ export default function Home() {
           <h2>Events</h2>
           <ul className="list-disc ml-8">
             <li>
-              <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose one up-and-coming startup
+              <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose an up-and-coming startup
               to read about and discuss together.
               {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
             </li>
             <li>
-              <b>Startup Trek</b>: We organize a trip for Harvard students to visit high-growth
+              <b>Startup Trek</b>: We organize an annual trip for Harvard students to visit high-growth
               tech startups and ecosystems in NYC. In February 2024, we&apos;ll be taking 12 students to NYC for the
-              first Harvard Startup Trek!
+              first Startup Trek!
             </li>
             <li>
-              <b>And more</b>: community build sessions and on-campus startup talks to come in Spring 2024.
+              <b>And more</b>: Community build sessions and on-campus startup talks to come in Spring 2024.
             </li>
           </ul>
         </div>
