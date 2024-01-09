@@ -52,7 +52,7 @@ export default function Home() {
             </li>
             <li>
               <b>Startup Trek</b>: We organize a trip for Harvard students to visit high-growth
-              tech startups and ecosystems in NYC. In February 2024, we'll be taking 12 students to NYC for the
+              tech startups and ecosystems in NYC. In February 2024, we&apos;ll be taking 12 students to NYC for the
               first Harvard Startup Trek!
             </li>
             <li>
