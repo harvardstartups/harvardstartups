@@ -11,11 +11,11 @@ export default function Home() {
         <div className="section">
           <h2>About</h2>
           <p>
-            We are a community of students at Harvard who are passionate about startups
-            and tech products that will shape the future. Launched Fall 2023,
-            we hope to provide a space for CS students to learn about startups together
-            and explore entrepreneurial careers. We are funded by Harvard
-            Computer Society and Women in Computer Science.
+            We are a community of students at Harvard who are passionate about
+            startups and tech products that will shape the future. Launched Fall
+            2023, we hope to provide a space for CS students to learn about
+            startups together and explore entrepreneurial careers. We are funded
+            by Harvard Computer Society and Women in Computer Science.
           </p>
         </div>
       </div>
@@ -46,17 +46,27 @@ export default function Home() {
           <h2>Events</h2>
           <ul className="list-disc ml-8">
             <li>
-              <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose an up-and-coming startup
-              to read about and discuss together. <i>Apply <a href="https://docs.google.com/forms/d/e/1FAIpQLSflghYX2kXnYw4BHHz5uNammBRv0REb1CETjHzCOAzSuid7TA/viewform">here</a> for spring 2024!</i>
+              <b>Startup Series</b>: We host a biweekly startup discussion
+              group; each time, we choose an up-and-coming startup to read about
+              and discuss together.{" "}
+              <i>
+                Apply{" "}
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSflghYX2kXnYw4BHHz5uNammBRv0REb1CETjHzCOAzSuid7TA/viewform">
+                  here
+                </a>{" "}
+                for spring 2024!
+              </i>
               {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
             </li>
             <li>
-              <b>Startup Trek</b>: We organize an annual trip for Harvard students to visit high-growth
-              tech startups and ecosystems in NYC. In February 2024, we&apos;ll be taking 12 students to NYC for the
+              <b>Startup Trek</b>: We organize an annual trip for Harvard
+              students to visit high-growth tech startups and ecosystems in NYC.
+              In February 2024, we&apos;ll be taking 12 students to NYC for the
               first Startup Trek.
             </li>
             <li>
-              <b>And more</b>: Community build sessions and on-campus startup talks to come in Spring 2024.
+              <b>And more</b>: Community build sessions and on-campus startup
+              talks to come in Spring 2024.
             </li>
           </ul>
         </div>
@@ -71,14 +81,16 @@ export default function Home() {
               className="underline"
             >
               interest form
-            </a>.
+            </a>
+            .
           </p>
           <p>
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">
               startupsatharvard@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
       </div>
