@@ -47,16 +47,16 @@ export default function Home() {
           <ul className="list-disc ml-8">
             <li>
               <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose an up-and-coming startup
-              to read about and discuss together. <i>Apply <a href="https://docs.google.com/forms/d/e/1FAIpQLSflghYX2kXnYw4BHHz5uNammBRv0REb1CETjHzCOAzSuid7TA/viewform">here</a> for spring 2024!</i>
+              to read about and discuss together.
               {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
             </li>
             <li>
               <b>Startup Trek</b>: We organize an annual trip for Harvard students to visit high-growth
-              tech startups and ecosystems in NYC. In February 2024, we&apos;ll be taking 12 students to NYC for the
-              first Startup Trek.
+              tech startups and ecosystems in NYC. We took 12 students to NYC in Feb 2024 for the
+              first Startup Trek!
             </li>
             <li>
-              <b>And more</b>: Community build sessions and on-campus startup talks to come in Spring 2024.
+              <b>And more</b>: Community socials, build sessions, and startup talks.
             </li>
           </ul>
         </div>
@@ -81,6 +81,134 @@ export default function Home() {
             </a>.
           </p>
         </div>
+        {/* <div className="section">
+          <h2>Board</h2>
+          <div className="mt-5 grid sm:grid-cols-5 section gap-x-8 gap-y-4">
+            <div>
+              <Image
+                src="/headshots/cynthia.jpg"
+                alt="cynthia"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Cynthia C.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/eric.jpg"
+                alt="eric"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Eric L.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/karen.jpg"
+                alt="karen"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Karen L.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/ron.jpg"
+                alt="ron"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Ron N.
+              </div>
+            </div>
+            <div>
+
+            </div>
+            <div>
+              <Image
+                src="/headshots/nim.jpg"
+                alt="nim"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Nim R.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/ethan.jpg"
+                alt="ethan"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Ethan S.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/tex.jpg"
+                alt="tex"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Tex X.
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/headshots/eric.jpg"
+                alt="derek"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "auto", marginBottom: "0.4rem" }}
+                objectFit="cover"
+                className="shadow-md rounded-full"
+              />
+              <div className="text-center">
+                Derek Z.
+              </div>
+            </div>
+          </div>
+        </div> */}
       </div>
     </main>
   );
