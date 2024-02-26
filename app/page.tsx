@@ -11,11 +11,11 @@ export default function Home() {
         <div className="section">
           <h2>About</h2>
           <p>
-            We are a community of students at Harvard who are passionate about startups
-            and tech products that will shape the future. Launched Fall 2023,
-            we hope to provide a space for CS students to learn about startups together
-            and explore entrepreneurial careers. We are funded by Harvard
-            Computer Society and Women in Computer Science.
+            We are a community of students at Harvard who are passionate about
+            startups and tech products that will shape the future. Launched Fall
+            2023, we hope to provide a space for CS students to learn about
+            startups together and explore entrepreneurial careers. We are funded
+            by Harvard Computer Society and Women in Computer Science.
           </p>
         </div>
       </div>
@@ -71,14 +71,16 @@ export default function Home() {
               className="underline"
             >
               interest form
-            </a>.
+            </a>
+            .
           </p>
           <p>
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">
               startupsatharvard@gmail.com
-            </a>.
+            </a>
+            .
           </p>
         </div>
         {/* <div className="section">
