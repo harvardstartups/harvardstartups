@@ -31,8 +31,26 @@ export default function Home() {
             className="shadow-md rounded"
           />
           <Image
+            src="/trek_listening.jpg"
+            alt="visiting a startup during trek"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+            className="shadow-md rounded"
+          />
+          <Image
             src="/panel.jpg"
-            alt="students discussing startups"
+            alt="panel q&a about startups"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+            className="shadow-md rounded"
+          />
+          <Image
+            src="/trek.jpg"
+            alt="leaving boston for startup trek"
             width={0}
             height={0}
             sizes="100vw"
