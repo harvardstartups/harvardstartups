@@ -64,14 +64,13 @@ export default function Home() {
           <h2>Events</h2>
           <ul className="list-disc ml-8">
             <li>
-              <b>Startup Series</b>: We host a biweekly startup discussion group; each time, we choose an up-and-coming startup
-              to read about and discuss together.
+              <b>Startup Series</b>: We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Join us for the Fall 2024 semester by filling out <a href="https://forms.gle/fU6CSbJ9ebUrLPBT8" target="_blank" className="underline">this</a> short application form!
               {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
             </li>
             <li>
               <b>Startup Trek</b>: We organize an annual trip for Harvard students to visit high-growth
               tech startups and ecosystems in NYC. We took 12 students to NYC in Feb 2024 for the
-              first Startup Trek!
+              first Startup Trek! Applications for the Spring 2024 Trek are now open: apply <a href="https://docs.google.com/forms/d/e/1FAIpQLSebwIpDZgcUioHeKMWomz9mXPRvj2xfAH14Ti3gJ5dB0F7ZGw/viewform?usp=sf_link" target="_blank" className="underline">here</a> by September 19th.
             </li>
             <li>
               <b>And more</b>: Community socials, build sessions, and startup talks.
@@ -82,7 +81,7 @@ export default function Home() {
           <h2>Join us</h2>
           <p className="mb-2">
             If you&apos;re a student interested in joining our events, please
-            fill out this{" "}
+            fill out the relevant applications above. If you'd like to be notified of future events, please fill out this {" "}
             <a
               href="https://forms.gle/PWyX5wE6bjxaHaiW9"
               target="_blank"
