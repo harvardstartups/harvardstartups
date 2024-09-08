@@ -81,7 +81,7 @@ export default function Home() {
           <h2>Join us</h2>
           <p className="mb-2">
             If you&apos;re a student interested in joining our events, please
-            fill out the relevant applications above. If you'd like to be notified of future events, please fill out this {" "}
+            fill out the relevant applications above. If you&apos;d like to be notified of future events, please fill out this {" "}
             <a
               href="https://forms.gle/PWyX5wE6bjxaHaiW9"
               target="_blank"
