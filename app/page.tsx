@@ -11,11 +11,7 @@ export default function Home() {
         <div className="section">
           <h2>About</h2>
           <p>
-            We are a community of students at Harvard who are passionate about
-            startups and tech products that will shape the future. Launched Fall
-            2023, we hope to provide a space for CS students to learn about
-            startups together and explore entrepreneurial careers. We are funded
-            by Harvard Computer Society and Women in Computer Science.
+            We are a community of students at Harvard who are passionate about mission-driven startups and tech products that will shape the future. Launched Fall 2023, we hope to provide a space for all students, regardless of background, to explore entrepreneurial careers together.
           </p>
         </div>
       </div>
