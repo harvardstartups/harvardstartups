@@ -84,7 +84,7 @@ export default function Home() {
           <h2>Startup Trek</h2>
           <p>
             We organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems.
-            We took 12 students to NYC in Feb 2024 for the first Startup Trek! Applications for the Spring 2024 Trek have closed, but please fill out the interest form below to be notified for future treks.
+            We took 12 students to NYC in Feb 2024 for the first Startup Trek! Applications for the Spring 2025 Trek have closed, but please fill out our <a href="https://forms.gle/PWyX5wE6bjxaHaiW9" target="_blank" className="underline">interest form</a> to be notified for future treks.
           </p>
 
           <div className="relative mt-4">
