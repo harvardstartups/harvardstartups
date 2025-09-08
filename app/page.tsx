@@ -76,7 +76,7 @@ export default function Home() {
         <div className="section">
           <h2>Startup Series</h2>
           <p>
-            We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Applications for the Fall 2025 semester are open at this <a href="https://airtable.com/appnxwqgfDbho3Ehw/pag96q6toTB70qSkZ/form" target="_blank" className="underline">interest form</a>
+            We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Applications for the Fall 2025 semester are open at this <a href="https://airtable.com/appnxwqgfDbho3Ehw/pag96q6toTB70qSkZ/form" target="_blank" className="underline">interest form</a>.
             {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
           </p>
         </div>
