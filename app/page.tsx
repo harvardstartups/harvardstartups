@@ -76,7 +76,7 @@ export default function Home() {
         <div className="section">
           <h2>Startup Series</h2>
           <p>
-            We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Applications for the Fall 2024 semester have closed, but please email us at <a href="mailto:startupsatharvard@gmail.com" className="underline">startupsatharvard@gmail.com</a> if you would still like to join.
+            We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Applications for the Fall 2025 semester are open at this <a href="https://airtable.com/appnxwqgfDbho3Ehw/pag96q6toTB70qSkZ/form" target="_blank" className="underline">interest form</a>
             {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function Home() {
           <h2>Startup Trek</h2>
           <p>
             We organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems.
-            We took 12 students to NYC in Feb 2024 for the first Startup Trek! Applications for the Spring 2025 Trek have closed, but please fill out our <a href="https://forms.gle/PWyX5wE6bjxaHaiW9" target="_blank" className="underline">interest form</a> to be notified for future treks.
+            We took 12 students to NYC in Feb 2024 for the first Startup Trek! Applications for the Spring 2026 Trek are not yet open.
           </p>
 
           <div className="relative mt-4">
