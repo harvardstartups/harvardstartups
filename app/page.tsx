@@ -108,7 +108,7 @@ export default function Home() {
           <h2>Startup Trek</h2>
           <p>
             Before second semester every year, we organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems. 
-            Several past participants have joined startups we've visited postgrad.
+            Several past participants have joined startups we&apos;ve visited postgrad.
             Applications for the Spring 2026 Trek have closed.
           </p>
           <div className="relative mt-4">
@@ -182,7 +182,7 @@ export default function Home() {
         <div className="section">
           <h2>Supporters</h2>
             <p>Our supporters fund our events and connect our members to leading startups. 
-              We're grateful for the generous support of, in no particular order, {" "}
+              We&apos;re grateful for the generous support of, in no particular order, {" "}
               <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>,{' '}
               <a href="https://www.benchmark.com/" target="_blank" className="underline">Benchmark</a>,{' '}
               <a href="https://thrivecap.com/" target="_blank" className="underline">Thrive</a>,{' '}
