@@ -28,7 +28,12 @@ export default function Home() {
         <div className="section">
           <h2>About</h2>
           <p>
-            We are a community of students at Harvard who are passionate about mission-driven startups and tech products that will shape the future. Launched Fall 2023, we hope to provide a space for all students, regardless of background, to explore entrepreneurial careers together.
+            We are a community of students at Harvard who are passionate about mission-driven startups and tech products that will shape the future. 
+            Launched Fall 2023, we hope to provide a space for all students, regardless of background, to explore entrepreneurial careers together.
+            <br />
+            <br />
+            We meet every Tuesday for 1 hour to discuss various topics related to building companies. 
+            Former student members have founded startups with an aggregate valuation of over $X00m.
           </p>
         </div>
       </div>
@@ -76,17 +81,36 @@ export default function Home() {
         <div className="section">
           <h2>Startup Series</h2>
           <p>
-            We host a biweekly startup discussion group; each discussion, we choose an up-and-coming startup to read about and discuss together. Typically, we also invite a guest speaker from the company to join us for Q&A. Applications for the Fall 2025 semester are open at this <a href="https://airtable.com/appnxwqgfDbho3Ehw/pag96q6toTB70qSkZ/form" target="_blank" className="underline">interest form</a>.
-            {/* Some of the companies we&apos;ve learned about include Pinecone, Glean, Notion, and Vercel. */}
+            Every other Tuesday, we choose an up-and-coming startup to read about and discuss together. We focus on product, team construction, and market opportunity. Typically, we also invite a guest speaker from the company to join us for Q&A. 
+            {/* Some of the startups we&apos;ve learned about include Suno, Glean, Pinecone, Notion, and Vercel. */}
           </p>
+        </div>
+        <div className="section">
+          <h2>10-K Reading Club (New!)</h2>
+          <p>
+            On other Tuesdays, we dive deep into the annual reports (10-K/10-Q SEC filings) of publicly-traded companies. We compare companies within the same industry, focusing on financial performance. 
+          </p>
+        </div>
+        <div className="section">
+          <h2>Member Grants (New!)</h2>
+          <p>
+            We are piloting a new dilution-free grant program for members to explore ideas and startups without raising institutional equity, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>. 
+            If selected, S@H can subsidize costs incurred pre-revenue, capped at $10k per startup. Valid expenses include:
+          </p>
+          <ul>
+            <li>hardware expenses (e.g. CNC mills, 3D printers)</li>
+            <li>model costs (e.g. API token credits, GPU credits)</li>
+            <li>legal costs (e.g. C Corp formation, TOS agreements)</li>
+            <li>advertising (e.g. Google Ads)</li>
+          </ul>
         </div>
         <div className="section">
           <h2>Startup Trek</h2>
           <p>
-            We organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems.
-            We took 12 students to NYC in Feb 2024 for the first Startup Trek! Applications for the Spring 2026 Trek are not yet open.
+            Before second semester every year, we organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems. 
+            Several past participants have joined startups we've visited postgrad.
+            Applications for the Spring 2026 Trek have closed.
           </p>
-
           <div className="relative mt-4">
             <div className="relative w-full h-auto">
               <Image
@@ -136,10 +160,9 @@ export default function Home() {
         <div className="section">
           <h2>Join us</h2>
           <p className="mb-2">
-            If you&apos;re a student interested in joining our events, please
-            fill out the relevant applications above. If you&apos;d like to be notified of future events, please fill out this {" "}
+            If you&apos;re a student interested in joining our events this semester, please fill out this {" "}
             <a
-              href="https://forms.gle/PWyX5wE6bjxaHaiW9"
+              href="https://forms.gle/QaEMsb7BAGcBN81y7"
               target="_blank"
               className="underline"
             >
@@ -155,6 +178,28 @@ export default function Home() {
             </a>
             .
           </p>
+        </div>
+        <div className="section">
+          <h2>Supporters</h2>
+            <p>Our supporters fund our events and connect our members to leading startups. 
+              We're grateful for the generous support of, in no particular order, {" "}
+              <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>,{' '}
+              <a href="https://www.benchmark.com/" target="_blank" className="underline">Benchmark</a>,{' '}
+              <a href="https://thrivecap.com/" target="_blank" className="underline">Thrive</a>,{' '}
+              <a href="https://nebular.vc/" target="_blank" className="underline">Nebular</a>,{' '}
+              <a href="https://hofcapital.com/" target="_blank" className="underline">HOF Capital</a>,{' '}
+              <a href="https://neo.com/" target="_blank" className="underline">Neo</a>,{' '}
+              <a href="https://felicis.com/" target="_blank" className="underline">Felicis</a>, {' '}
+              <a href="https://boxgroup.com/" target="_blank" className="underline">Box Group</a>, {' '}
+              <a href="https://linkventures.com/" target="_blank" className="underline">Link Ventures</a>, {' '}
+              <a href="https://a16z.com/" target="_blank" className="underline">Andreessen Horowitz</a>, {' '}
+               and others.
+            </p>
+            <br />
+            <p>
+              As a 501(c)(3) nonprofit organization, your contributions are tax-deductible to the extent allowable by law. 
+              We accept donations via a variety of methods, flexible to your personal or corporate tax situation. Email us at <a href="mailto:startupsatharvard@gmail.com" className="underline">startupsatharvard@gmail.com</a> to arrange a donation.
+            </p>
         </div>
         {/* <div className="section">
           <h2>Board</h2>

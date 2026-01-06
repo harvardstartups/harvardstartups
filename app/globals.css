@@ -78,6 +78,14 @@
   h2 {
     @apply text-2xl font-bold mb-2;
   }
+
+  ul {
+    @apply list-disc ml-6 my-2;
+  }
+
+  li {
+    @apply mb-1;
+  }
 }
 
 .section {
