@@ -94,8 +94,9 @@ export default function Home() {
         <div className="section">
           <h2>Member Grants (New!)</h2>
           <p>
-            We are piloting a new dilution-free grant program for members to explore ideas and startups without raising institutional equity, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>. 
-            If selected, S@H can subsidize costs incurred pre-revenue, capped at $10k per startup. Valid expenses include:
+          We are piloting a non-dilutive funding program to support early-stage, pre-revenue startups formed by our members, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>.
+          Selected companies may receive up to $10k in funding to support early experimentation and company formation. 
+          Funds are provided without equity and may be used at the company's discretion.
           </p>
           <ul>
             <li>hardware expenses (e.g. CNC mills, 3D printers)</li>
