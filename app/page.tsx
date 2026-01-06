@@ -96,7 +96,7 @@ export default function Home() {
           <p>
           We are piloting a non-dilutive funding program to support early-stage, pre-revenue startups formed by our members, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>.
           Selected companies may receive up to $10k in funding to support early experimentation and company formation. 
-          Funds are provided without equity and may be used at the company's discretion.
+          Funds are provided without expectation of equity and may be used at the company&apos;s discretion.
           </p>
           <ul>
             <li>hardware expenses (e.g. CNC mills, 3D printers)</li>
