@@ -22,7 +22,7 @@ export const heroStories: FounderStory[] = [
   {
     companyName: "Grace Li",
     duringImage: "/founders/grace_2025.jpg",
-    nowImage: "/founders/grace_2026.png",
+    nowImage: "/founders/grace_2026.jpg",
     duringCaption: "Grace attended the first Startup Trek in 2025. ",
     nowCaption: "Millions have used Grace's Design Arena.",
   },

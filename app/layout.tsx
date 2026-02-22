@@ -11,8 +11,33 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "startups @ harvard",
-  description: "a community of students excited about startups",
+  metadataBase: new URL("https://www.startupsatharvard.com"),
+  title: "Startups at Harvard",
+  description:
+    "A community of Harvard students who enjoy building products that people love. We meet weekly to discuss startups, host guest speakers, and run an annual Startup Trek.",
+  openGraph: {
+    title: "Startups at Harvard",
+    description:
+      "A community of Harvard students who enjoy building products that people love.",
+    url: "https://www.startupsatharvard.com",
+    siteName: "Startups at Harvard",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Startups at Harvard",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Startups at Harvard",
+    description:
+      "A community of Harvard students who enjoy building products that people love.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({

@@ -145,7 +145,7 @@ export function HeroBeforeAfter({
 
           {/* Mobile names: compact – just the active name + dot indicators */}
           <div className="flex md:hidden flex-col items-center order-first w-full py-2">
-            <p className="font-serif text-2xl font-semibold text-stone-900 transition-all duration-300">
+            <p className="font-serif text-2xl italic text-stone-900 transition-all duration-300">
               {current.companyName}
             </p>
             <div className="flex gap-2 mt-2">
@@ -183,7 +183,7 @@ export function HeroBeforeAfter({
                     type="button"
                     onClick={() => handleTransition(i)}
                     className={`
-                      w-full text-center transition-opacity duration-300 flex items-center justify-center shrink-0 font-serif text-3xl lg:text-4xl text-stone-900 whitespace-nowrap
+                      w-full text-center transition-opacity duration-300 flex items-center justify-center shrink-0 font-serif italic text-3xl lg:text-4xl text-stone-900 whitespace-nowrap
                       ${i === activeIndex
                         ? "font-semibold"
                         : "font-normal text-stone-500 hover:text-stone-700"}

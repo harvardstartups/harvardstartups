@@ -23,7 +23,7 @@ export default function Home() {
   };
   return (
     <main className="w-full">
-      <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex items-center justify-center px-5 py-10 md:py-12">
+      <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex items-end justify-center px-5 pt-10 pb-4 md:pt-12 md:pb-6">
         <div className="relative z-10 text-center max-w-2xl">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
             Where student builders meet, learn, and share
@@ -31,7 +31,6 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
             Startups at Harvard is a community of students who enjoy building products that people love.
           </p>
-          <br />
         </div>
         <div className="hidden lg:block">
           <SpotlightImages />
