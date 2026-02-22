@@ -50,6 +50,7 @@ export function HeroBeforeAfter({
 }: HeroBeforeAfterProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const sentinelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
@@ -95,6 +96,14 @@ export function HeroBeforeAfter({
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [stories.length]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const handleTransition = (nextIndex: number) => {
     if (nextIndex === activeIndex) return;
@@ -198,10 +207,10 @@ export function HeroBeforeAfter({
           </div>
 
           {/* Images: stacked on mobile, separate grid columns on desktop */}
-          <div className="flex flex-col items-center gap-3 md:contents order-last">
+          <div className="flex flex-col items-center gap-2 w-4/5 md:w-full md:contents order-last">
             {/* During */}
             <div className="flex flex-col items-center text-center w-full min-w-0 md:order-1">
-              <p className="text-sm md:text-lg text-stone-600 pb-2 md:pb-3">
+              <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 {duringLabel}
               </p>
               <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
@@ -233,7 +242,7 @@ export function HeroBeforeAfter({
 
             {/* Now */}
             <div className="flex flex-col items-center text-center w-full min-w-0 md:order-3">
-              <p className="text-sm md:text-lg text-stone-600 pb-2 md:pb-3">
+              <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 Now
               </p>
               <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
@@ -265,10 +274,10 @@ export function HeroBeforeAfter({
           </div>
         </div>
 
-        {/* Scroll hint */}
-        {activeIndex < 2 && (
-          <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-xs md:text-sm transition-opacity duration-300 hidden md:block">
-            Scroll to see more
+        {/* Scroll hint (desktop only) */}
+        {isDesktop && activeIndex < 2 && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-sm transition-opacity duration-300">
+            <p className="text-center">Scroll to see more</p>
           </div>
         )}
       </div>
