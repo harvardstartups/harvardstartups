@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
+import { SpotlightImages } from "@/components/SpotlightImages";
+import { heroStories } from "@/lib/hero-stories";
 
 export default function Home() {
   const trekImages = Array.from({ length: 18 }, (_, i) => ({
@@ -19,12 +22,25 @@ export default function Home() {
     setCurrentIndex((prevIndex) => (prevIndex === trekImages.length - 1 ? 0 : prevIndex + 1));
   };
   return (
-    <main className="p-5 w-full">
-      <div className="max-w-xl mx-auto">
-        <h1 className="text-4xl font-bold my-16 text-center">
-          startups @ harvard
-        </h1>
+    <main className="w-full">
+      <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex items-center justify-center px-5 py-10 md:py-12">
+        <div className="relative z-10 text-center max-w-2xl">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
+            Where student builders meet, learn, and share
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
+            Startups at Harvard is a community of students who enjoy building products that people love.
+          </p>
+          <br />
+        </div>
+        <div className="hidden lg:block">
+          <SpotlightImages />
+        </div>
+      </section>
 
+      <HeroBeforeAfter stories={heroStories} />
+
+      <div className="p-5 max-w-xl mx-auto">
         <div className="section">
           <h2>About</h2>
           <p>
@@ -37,7 +53,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="max-w-xl mx-auto">
+      <div className="p-5 max-w-xl mx-auto">
         <div className="grid sm:grid-cols-2 gap-2 section">
           <Image
             src="/about_us/discussion.jpg"
@@ -77,7 +93,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="max-w-xl mx-auto">
+      <div className="p-5 max-w-xl mx-auto">
         <div className="section">
           <h2>Startup Series</h2>
           <p>
@@ -125,17 +141,15 @@ export default function Home() {
               />
             </div>
 
-            {/* Left arrow */}
             <button
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded"
+              className="absolute left-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
               onClick={handlePrev}
             >
               {"<"}
             </button>
 
-            {/* Right arrow */}
             <button
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded"
+              className="absolute right-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
               onClick={handleNext}
             >
               {">"}
