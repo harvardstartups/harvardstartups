@@ -267,7 +267,7 @@ export function HeroBeforeAfter({
 
         {/* Scroll hint */}
         {activeIndex < 2 && (
-          <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-xs md:text-sm transition-opacity duration-300">
+          <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-xs md:text-sm transition-opacity duration-300 hidden md:block">
             Scroll to see more
           </div>
         )}
