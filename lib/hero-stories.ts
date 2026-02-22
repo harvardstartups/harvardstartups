@@ -15,7 +15,7 @@ export const heroStories: FounderStory[] = [
   {
     companyName: "Eva Tucke",
     duringImage: "/founders/eva_2024.jpg",
-    nowImage: "/startup_trek/18.jpg",
+    nowImage: "/founders/eva_2026.jpg",
     duringCaption: "Eva met Neo during Startup Trek 2024. ",
     nowCaption: "Neo invested in Eva's pre-seed and seed rounds.",
   },
