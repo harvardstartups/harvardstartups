@@ -72,11 +72,16 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground overflow-x-hidden;
+    background-color: #faf9f7;
+  }
+
+  h1 {
+    @apply font-serif text-3xl sm:text-4xl font-thin;
   }
 
   h2 {
-    @apply text-2xl font-bold mb-2;
+    @apply font-serif text-xl sm:text-2xl font-thin mb-2;
   }
 
   ul {
