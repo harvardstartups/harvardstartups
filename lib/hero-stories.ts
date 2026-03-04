@@ -13,7 +13,7 @@ export const heroStories: FounderStory[] = [
     nowCaption: "Startup Trek 2026 visited Ron's company in NYC.",
   },
   {
-    companyName: "Eva Tucke",
+    companyName: "Eva Tuecke",
     duringImage: "/founders/eva_2024.jpg",
     nowImage: "/founders/eva_2026.jpg",
     duringCaption: "Eva met Neo during Startup Trek 2024. ",
