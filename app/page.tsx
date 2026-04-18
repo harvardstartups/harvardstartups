@@ -120,7 +120,7 @@ export default function Home() {
             <li>advertising (e.g. Google Ads)</li>
           </ul>
           <p>
-            Apply to our Grants Program <a href="https://forms.gle/fotq1aWRD9hbEK7B7" target="_blank" className="underline">here</a>. Applications will be read on a rolling basis.          
+            Apply for a grant <a href="https://forms.gle/fotq1aWRD9hbEK7B7" target="_blank" className="underline">here</a>. Applications will be read on a rolling basis.          
           </p>
         </div>
         <div className="section">
