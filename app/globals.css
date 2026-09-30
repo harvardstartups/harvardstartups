@@ -114,8 +114,8 @@ a {
 
 .spotlight-photo {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: min(80px, 20vw);
+  height: min(80px, 20vw);
   left: calc(12.5% + var(--photo-slot) * 25%);
   top: 50%;
 }
