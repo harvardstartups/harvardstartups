@@ -43,6 +43,20 @@ export function HeroBeforeAfter({
   duringLabel = "Then",
 }: HeroBeforeAfterProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expandedPhoto, setExpandedPhoto] = useState<{src: string; alt: string} | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!expandedPhoto || !dialog) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
+    return () => {
+      dialog.close();
+      document.body.style.overflow = overflow;
+    };
+  }, [expandedPhoto]);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -164,12 +178,12 @@ export function HeroBeforeAfter({
                   key={i}
                   type="button"
                   onClick={() => handleTransition(i)}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                    i === activeIndex ? "bg-stone-800" : "bg-stone-300"
+                  className={`w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#951929] ${
+                    i === activeIndex ? "text-stone-800" : "text-stone-300"
                   }`}
                   aria-label={`Go to ${stories[i].name}`}
                   aria-pressed={i === activeIndex}
-                />
+                ><span aria-hidden className="w-2 h-2 rounded-full bg-current" /></button>
               ))}
             </div>
           </div>
@@ -249,15 +263,15 @@ export function HeroBeforeAfter({
                   <div key={story.id} aria-hidden={i !== activeIndex}
                     className="absolute inset-0 transition-opacity duration-500 ease-out motion-reduce:transition-none"
                     style={{ opacity: i === activeIndex ? 1 : 0, pointerEvents: i === activeIndex ? "auto" : "none" }}>
-                    <div className="absolute left-0 top-0 w-[78%] h-[72%] overflow-hidden rounded-lg shadow-md">
+                    <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.teamAlt}`} onClick={() => setExpandedPhoto({src: story.teamImage, alt: story.teamAlt})} className="absolute left-0 top-0 w-[78%] h-[72%] overflow-hidden rounded-lg shadow-md">
                       <Image src={story.teamImage} alt={story.teamAlt} fill className="object-cover" sizes="(max-width: 768px) 65vw, 26vw" />
-                    </div>
-                    {story.id !== "grace" && <div className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                    </button>
+                    {story.id !== "grace" && <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.portraitAlt}`} onClick={() => setExpandedPhoto({src: story.portrait, alt: story.portraitAlt})} className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
                       <Image src={story.portrait} alt={story.portraitAlt} fill className="object-cover" style={{objectPosition: story.portraitPosition}} sizes="(max-width: 768px) 25vw, 10vw" />
-                    </div>}
-                    <div className="absolute right-0 bottom-0 w-[67%] h-[51%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                    </button>}
+                    <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${`${story.company} website`}`} onClick={() => setExpandedPhoto({src: story.websiteImage, alt: `${story.company} website`})} className="absolute right-0 bottom-0 w-[67%] h-[51%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
                       <Image src={story.websiteImage} alt={`${story.company} website`} fill className="object-cover object-top" sizes="(max-width: 768px) 55vw, 23vw" />
-                    </div>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -265,13 +279,13 @@ export function HeroBeforeAfter({
           </div>
         </div>
 
-        <div className="mt-5 md:mt-8 max-w-2xl text-center text-xs md:text-sm leading-relaxed text-stone-600">
+        <div className="mt-5 md:mt-8 max-w-2xl text-center text-sm leading-relaxed text-stone-600">
           <p>
             {current.trek}{" "}
             <a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>
             {current.metrics.map((metric, i) => <span key={metric.label}>
-              {metric.label === "valuation" ? " It is now valued at " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : ""}</a>
-              {", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
+              {metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
+              {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
             </span>)}
           </p>
         </div>
@@ -283,6 +297,18 @@ export function HeroBeforeAfter({
           </div>
         )}
       </div>
+      <dialog ref={dialogRef} aria-label={expandedPhoto?.alt || "Expanded photo"}
+        onCancel={() => setExpandedPhoto(null)} onClose={() => setExpandedPhoto(null)}
+        onClick={event => { if (event.target === event.currentTarget) setExpandedPhoto(null); }}
+        className="w-[94vw] max-w-5xl rounded-xl bg-[#faf9f7] p-4 backdrop:bg-black/70">
+        {expandedPhoto && <>
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <p className="text-sm text-stone-700">{expandedPhoto.alt}</p>
+            <button autoFocus type="button" onClick={() => setExpandedPhoto(null)} className="min-h-11 px-4 rounded border border-stone-300">Close</button>
+          </div>
+          <div className="relative h-[70svh]"><Image src={expandedPhoto.src} alt={expandedPhoto.alt} fill sizes="90vw" className="object-contain" /></div>
+        </>}
+      </dialog>
     </section>
   );
 }
