@@ -1,6 +1,6 @@
 "use client"; // Add this at the very top of your file
 
-import Image from "next/image";
+import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useState } from "react";
 import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";

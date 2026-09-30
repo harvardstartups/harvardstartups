@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useEffect, useState, useCallback, useRef, type CSSProperties } from "react";
 
 const IMAGE_POOL = [

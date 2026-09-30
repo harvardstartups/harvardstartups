@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useEffect, useRef, useState } from "react";
 
 import type { FounderStory } from "@/lib/hero-stories";
