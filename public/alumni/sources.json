@@ -1,0 +1,39 @@
+{
+  "checked": "2026-09-30",
+  "assets": {
+    "sapien-team.webp": {
+      "source": "https://sapien.ai/images/team/team_group_photo.webp",
+      "page": "https://sapien.ai/careers"
+    },
+    "altara-team.avif": {
+      "source": "https://altara.ai/images/careers/couch-team.avif",
+      "page": "https://altara.ai/careers"
+    },
+    "intelligence-team.webp": {
+      "source": "https://www.intelligence.ai/careers/team-1.webp",
+      "page": "https://www.intelligence.ai/careers"
+    },
+    "grace-portrait.jpg": {
+      "page": "https://www.ycombinator.com/companies/design-arena",
+      "description": "Public founder portrait labeled Grace Li"
+    },
+    "sapien-website-2026.jpg": {
+      "page": "https://sapien.ai/",
+      "description": "Homepage screenshot"
+    },
+    "altara-website.jpg": {
+      "page": "https://altara.ai/",
+      "description": "Homepage screenshot"
+    },
+    "design-arena-website.jpg": {
+      "page": "https://www.designarena.ai/",
+      "description": "Product screenshot cropped to exclude the account sidebar"
+    }
+  },
+  "notes": [
+    "Existing Ron and Eva photos are reused from the original repository.",
+    "Funding amounts, seed rounds and valuation are labeled separately; links in lib/hero-stories.ts support each figure.",
+    "No public valuation verified for Altara or Intelligence.",
+    "Eva met Neo and Grace attended the 2025 trek are retained from the original site."
+  ]
+}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
+import { AlumniStories } from "@/components/AlumniStories";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
 
@@ -35,7 +35,7 @@ export default function Home() {
         <SpotlightImages />
       </section>
 
-      <HeroBeforeAfter stories={heroStories} />
+      <AlumniStories stories={heroStories} />
 
       <div className="p-5 max-w-xl mx-auto">
         <div className="section">
@@ -91,22 +91,6 @@ export default function Home() {
         </div>
       </div>
       <div className="p-5 max-w-xl mx-auto">
-        <div className="section">
-          <h2>Members building companies</h2>
-          <p className="mb-3">
-            <strong>Ron Nachum</strong> co-founded <a href="https://sapien.ai/" target="_blank" rel="noopener noreferrer" className="underline">Sapien</a>, which raised an{" "}
-            <a href="https://sapien.ai/blog/sapien-seed-round-general-catalyst" target="_blank" rel="noopener noreferrer" className="underline">$8.7M seed led by General Catalyst</a>.
-            {" "}Ron <a href="https://www.linkedin.com/posts/ron-nachum_a-single-dinner-and-even-just-a-single-google-activity-7421971423528902656-gQQo" target="_blank" rel="noopener noreferrer" className="underline">met Ali Partovi at a trek dinner</a>; Ali became Sapien&apos;s first investor. Ron hosted the 2026 trek at Sapien&apos;s office.
-          </p>
-          <p className="mb-3">
-            <strong>Eva Tuecke</strong> met Neo on the 2024 trek and co-founded <a href="https://altara.ai/" target="_blank" rel="noopener noreferrer" className="underline">Altara</a>.
-            {" "}The company raised a <a href="https://greylock.com/blog/introducing-altara-ai-for-the-physical-sciences/" target="_blank" rel="noopener noreferrer" className="underline">$7M seed led by Greylock, with Neo participating</a>, to build AI for the physical sciences.
-          </p>
-          <p>
-            <strong>Grace Li</strong> attended the 2025 trek and co-founded <a href="https://www.intelligence.ai/" target="_blank" rel="noopener noreferrer" className="underline">Intelligence</a>, the company behind <a href="https://www.designarena.ai/" target="_blank" rel="noopener noreferrer" className="underline">Design Arena</a>.
-            {" "}The company raised a <a href="https://www.indexventures.com/perspectives/proving-ai-in-the-real-world-our-investment-in-the-intelligence-company/" target="_blank" rel="noopener noreferrer" className="underline">$7.9M seed with Index Ventures</a>; Design Arena has reached over 5 million users.
-          </p>
-        </div>
         <div className="section">
           <h2>Members joining startups</h2>
           <p className="mb-3">
