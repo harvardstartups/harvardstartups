@@ -100,3 +100,48 @@
 a {
   color: #951929ff;
 }
+
+/* Keep the photo animation visible in narrow preview panes and on phones. */
+.spotlight-field {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 112px;
+  margin-top: 1.5rem;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.spotlight-photo {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: calc(12.5% + var(--photo-slot) * 25%);
+  top: 50%;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .spotlight-photo { width: 96px; height: 96px; }
+  .spotlight-field { height: 132px; }
+}
+
+@media (min-width: 1024px) {
+  .spotlight-field {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+  }
+  .spotlight-photo {
+    width: clamp(100px, 10vw, 160px);
+    height: clamp(100px, 10vw, 160px);
+    left: var(--photo-left);
+    top: var(--photo-top);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-photo { transition: none !important; }
+}

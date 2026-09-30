@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, type CSSProperties } from "react";
 
 const IMAGE_POOL = [
   "/startup_trek_2026/1.jpg",
@@ -82,7 +82,7 @@ function PoppingSlot({
   onCycle: () => void;
 }) {
   const positions = ZONE_POSITIONS[side][zone];
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [position, setPosition] = useState<[number, number]>(positions[0]);
 
   const onCycleRef = useRef(onCycle);
@@ -91,6 +91,7 @@ function PoppingSlot({
   positionsRef.current = positions;
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setPosition(pickRandom(positionsRef.current));
     let fadeTimer: ReturnType<typeof setTimeout>;
     let showTimer: ReturnType<typeof setTimeout>;
@@ -118,15 +119,7 @@ function PoppingSlot({
       }, randomBetween(CYCLE_MIN_MS, CYCLE_MAX_MS));
     };
 
-    const delay = randomBetween(300, 900);
-    showTimer = setTimeout(() => {
-      if (!alive) return;
-      setIsVisible(true);
-    }, delay);
-    cycleTimer = setTimeout(() => {
-      if (!alive) return;
-      scheduleNext();
-    }, delay + randomBetween(CYCLE_MIN_MS, CYCLE_MAX_MS));
+    scheduleNext();
 
     return () => {
       alive = false;
@@ -142,21 +135,22 @@ function PoppingSlot({
 
   return (
     <div
-      className="absolute w-28 h-28 md:w-36 md:h-36 xl:w-40 xl:h-40 rounded-xl overflow-hidden bg-stone-200 shadow-lg pointer-events-none"
+      className="spotlight-photo rounded-xl overflow-hidden bg-stone-200 shadow-lg pointer-events-none"
       style={{
-        left: `${left}%`,
-        top: `${top}%`,
+        "--photo-left": `${left}%`,
+        "--photo-top": `${top}%`,
+        "--photo-slot": (side === "left" ? 0 : 2) + (zone === "upper" ? 0 : 1),
         transform: `translate(-50%, -50%) scale(${isVisible ? 1 : 0.75})`,
         transition: `opacity ${POP_DURATION_MS}ms ease-out, transform ${POP_DURATION_MS}ms ease-out, left ${POP_DURATION_MS}ms ease-out, top ${POP_DURATION_MS}ms ease-out`,
         opacity: isVisible ? 1 : 0,
-      }}
+      } as CSSProperties}
     >
       <Image
         src={src}
         alt=""
         fill
         className="object-cover"
-        sizes="(max-width: 768px) 112px, 160px"
+        sizes="(max-width: 639px) 80px, (max-width: 1023px) 96px, 160px"
       />
     </div>
   );
@@ -169,6 +163,7 @@ export function SpotlightImages() {
   indicesRef.current = indices;
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const initial = pickFourDistinctIndices(IMAGE_POOL.length);
     indicesRef.current = initial;
     setIndices(initial);
@@ -186,7 +181,7 @@ export function SpotlightImages() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden>
+    <div className="spotlight-field" aria-hidden>
       <PoppingSlot
         side="left"
         zone="upper"
