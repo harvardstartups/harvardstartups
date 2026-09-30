@@ -270,7 +270,7 @@ export function HeroBeforeAfter({
             {current.trek}{" "}
             <a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>
             {current.metrics.map((metric, i) => <span key={metric.label}>
-              {i === 0 ? " — " : " "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value} {metric.label}</a>
+              {metric.label === "valuation" ? " It is now valued at " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : ""}</a>
               {", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
             </span>)}
           </p>
