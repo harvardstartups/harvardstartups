@@ -56,7 +56,7 @@ export const heroStories: FounderStory[] = [
     website: "https://altara.ai/",
     websiteLabel: "altara.ai",
     description: "AI for the physical sciences, helping scientists and engineers develop better products.",
-    trek: "Eva met Neo on the 2024 trek. Neo went on to participate in Altara’s seed round alongside lead investor Greylock.",
+    trek: "Eva met Neo on the 2024 trek and went on to cofound Altara, building AI for the physical sciences.",
     portrait: "/founders/eva_2026.jpg",
     portraitAlt: "Eva and fellow founders at a dinner with Neo",
     portraitCaption: "At dinner with Neo",

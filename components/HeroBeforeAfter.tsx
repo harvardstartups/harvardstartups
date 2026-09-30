@@ -271,7 +271,7 @@ export function HeroBeforeAfter({
             <a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>
             {current.metrics.map((metric, i) => <span key={metric.label}>
               {i === 0 ? " — " : " "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value} {metric.label}</a>
-              {", "}{metric.detail.charAt(0).toLowerCase() + metric.detail.slice(1)}.
+              {", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
             </span>)}
           </p>
         </div>
