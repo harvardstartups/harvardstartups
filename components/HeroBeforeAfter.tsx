@@ -237,7 +237,7 @@ export function HeroBeforeAfter({
                 ))}
               </div>
               <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <p className="text-xs md:text-sm text-stone-600 line-clamp-2">
+                <p className="text-xs md:text-sm text-stone-600">
                   {current.duringCaption}
                 </p>
               </div>
@@ -269,7 +269,7 @@ export function HeroBeforeAfter({
                 ))}
               </div>
               <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <p className="text-xs md:text-sm text-stone-600 line-clamp-2">
+                <p className="text-xs md:text-sm text-stone-600">
                   {current.nowCaption}
                 </p>
               </div>
