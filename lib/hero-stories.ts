@@ -7,6 +7,8 @@ export type FounderStory = {
   description: string;
   trek: string;
   trekSource?: string;
+  duringImage: string;
+  duringCaption: string;
   portrait: string;
   portraitAlt: string;
   portraitCaption: string;
@@ -23,6 +25,8 @@ export type FounderStory = {
 export const heroStories: FounderStory[] = [
   {
     id: "ron",
+    duringImage: "/founders/ron_2024.jpg",
+    duringCaption: "On the first trek in 2024, Ron met Ali Partovi, who became Sapien’s first investor. Ron hosted the trek at Sapien in 2026.",
     name: "Ron Nachum",
     company: "Sapien",
     website: "https://sapien.ai/",
@@ -45,6 +49,8 @@ export const heroStories: FounderStory[] = [
   },
   {
     id: "eva",
+    duringImage: "/founders/eva_2024.jpg",
+    duringCaption: "Eva met Neo on the 2024 trek. Neo went on to participate in Altara’s seed round.",
     name: "Eva Tuecke",
     company: "Altara",
     website: "https://altara.ai/",
@@ -64,14 +70,16 @@ export const heroStories: FounderStory[] = [
   },
   {
     id: "grace",
+    duringImage: "/founders/grace_2025.jpg",
+    duringCaption: "Grace joined the 2025 trek. She now co-leads Intelligence, the company behind Design Arena.",
     name: "Grace Li",
     company: "Intelligence / Design Arena",
     website: "https://www.designarena.ai/",
     websiteLabel: "designarena.ai",
     description: "The company behind Design Arena, where millions of people explore and compare what AI can create.",
     trek: "Grace joined the 2025 trek. She now co-leads Intelligence, building Design Arena and new ways to evaluate AI in the real world.",
-    portrait: "/alumni/grace-portrait.jpg",
-    portraitAlt: "Grace Li, cofounder of Intelligence and Design Arena",
+    portrait: "/founders/grace_2026.jpg",
+    portraitAlt: "Design Arena, cofounded by Grace Li",
     portraitCaption: "Grace Li",
     teamImage: "/alumni/intelligence-team.webp",
     teamAlt: "The Intelligence team gathered in their office kitchen",

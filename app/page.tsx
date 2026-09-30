@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AlumniStories } from "@/components/AlumniStories";
+import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
 
@@ -35,7 +35,7 @@ export default function Home() {
         <SpotlightImages />
       </section>
 
-      <AlumniStories stories={heroStories} />
+      <HeroBeforeAfter stories={heroStories} />
 
       <div className="p-5 max-w-xl mx-auto">
         <div className="section">
