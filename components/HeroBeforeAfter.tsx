@@ -145,7 +145,7 @@ export function HeroBeforeAfter({
 
       {/* Sticky viewport */}
       <div ref={stickyRef} className="sticky top-0 min-h-screen flex flex-col items-center justify-center px-4 py-4 md:py-16 z-10">
-        <header className="text-center max-w-xl mx-auto mb-3 md:mb-14">
+        <header className="text-center max-w-xl mx-auto mb-3 md:mb-10">
           <h2 id="alumni-heading">Former Members</h2>
           <p className="text-sm text-stone-600">Previous trek members, and what they’re building now.</p>
         </header>
@@ -216,7 +216,7 @@ export function HeroBeforeAfter({
               <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 {duringLabel}
               </p>
-              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[19svh] md:max-h-none rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
+              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
                 {stories.map((story, i) => (
                   <div
                     key={story.name + i}
@@ -236,11 +236,7 @@ export function HeroBeforeAfter({
                   </div>
                 ))}
               </div>
-              <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <p className="text-xs md:text-sm text-stone-600">
-                  {current.duringCaption}
-                </p>
-              </div>
+
             </div>
 
             {/* Now */}
@@ -248,37 +244,36 @@ export function HeroBeforeAfter({
               <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 Now
               </p>
-              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[19svh] md:max-h-none rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
+              <div className="relative w-full max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none">
                 {stories.map((story, i) => (
-                  <div
-                    key={story.name + "-now-" + i}
+                  <div key={story.id} aria-hidden={i !== activeIndex}
                     className="absolute inset-0 transition-opacity duration-500 ease-out motion-reduce:transition-none"
-                    style={{
-                      opacity: i === activeIndex ? 1 : 0,
-                      pointerEvents: i === activeIndex ? "auto" : "none",
-                    }}
-                  >
-                    <Image
-                      src={story.portrait}
-                      alt={story.portraitAlt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 90vw, 33vw"
-                    />
+                    style={{ opacity: i === activeIndex ? 1 : 0, pointerEvents: i === activeIndex ? "auto" : "none" }}>
+                    <div className="absolute left-0 top-0 w-[78%] h-[72%] overflow-hidden rounded-lg shadow-md">
+                      <Image src={story.teamImage} alt={story.teamAlt} fill className="object-cover" sizes="(max-width: 768px) 65vw, 26vw" />
+                    </div>
+                    {story.id !== "grace" && <div className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                      <Image src={story.portrait} alt={story.portraitAlt} fill className="object-cover" style={{objectPosition: story.portraitPosition}} sizes="(max-width: 768px) 25vw, 10vw" />
+                    </div>}
+                    <div className="absolute right-0 bottom-0 w-[67%] h-[51%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                      <Image src={story.websiteImage} alt={`${story.company} website`} fill className="object-cover object-top" sizes="(max-width: 768px) 55vw, 23vw" />
+                    </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <div className="text-xs md:text-sm text-stone-600 space-y-2">
-                  <p><a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>. {current.description}</p>
-                  {current.metrics.map(metric => (
-                    <p key={metric.label}><a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value} {metric.label}</a>. {metric.detail}.</p>
-                  ))}
-                  <p className="flex justify-center gap-4"><a href={current.careers} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Meet the team ↗</a><a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Visit the site ↗</a></p>
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-5 md:mt-8 max-w-2xl text-center text-xs md:text-sm leading-relaxed text-stone-600">
+          <p>
+            {current.trek}{" "}
+            <a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>
+            {current.metrics.map((metric, i) => <span key={metric.label}>
+              {i === 0 ? " — " : " "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value} {metric.label}</a>
+              {", "}{metric.detail.charAt(0).toLowerCase() + metric.detail.slice(1)}.
+            </span>)}
+          </p>
         </div>
 
         {/* Scroll hint (desktop only) */}
