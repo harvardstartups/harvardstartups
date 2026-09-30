@@ -7,9 +7,9 @@ import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
 
 export default function Home() {
-  const trekImages = Array.from({ length: 18 }, (_, i) => ({
-    src: `/startup_trek/${i + 1}.jpg`,
-    alt: `Startup Trek Image ${i + 1}`,
+  const trekImages = Array.from({ length: 8 }, (_, i) => ({
+    src: `/startup_trek_2026/${i + 1}.jpg`,
+    alt: `2026 Startup Trek photo ${i + 1}`,
   }));
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -107,13 +107,13 @@ export default function Home() {
           </p>
         </div>
         <div className="section">
-          <h2>10-K Reading Club (New!)</h2>
+          <h2>10-K Reading Club</h2>
           <p>
             On other Tuesdays, we dive deep into the annual reports (10-K/10-Q SEC filings) of publicly-traded companies. We compare companies within the same industry, focusing on financial performance. 
           </p>
         </div>
         <div className="section">
-          <h2>Member Grants (New!)</h2>
+          <h2>Member Grants</h2>
           <p>
           We are piloting a non-dilutive funding program to support early-stage, pre-revenue startups formed by our members, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>.
           Selected companies may receive up to $10k in funding to support early experimentation and company formation. 
@@ -131,7 +131,7 @@ export default function Home() {
           <p>
             Before second semester every year, we organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems. 
             Several past participants have joined startups we&apos;ve visited postgrad.
-            Applications for the Spring 2026 Trek have closed.
+            For updates on future treks, fill out the interest form below.
           </p>
           <div className="relative mt-4">
             <div className="relative w-full h-auto">
@@ -148,6 +148,7 @@ export default function Home() {
 
             <button
               className="absolute left-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
+              aria-label="Previous trek photo"
               onClick={handlePrev}
             >
               {"<"}
@@ -155,6 +156,7 @@ export default function Home() {
 
             <button
               className="absolute right-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
+              aria-label="Next trek photo"
               onClick={handleNext}
             >
               {">"}
@@ -163,7 +165,7 @@ export default function Home() {
 
           {/* Caption */}
           <p className="text-center font-semibold mt-4">
-            Photos from the 2024 Startup Trek in NYC
+            Photos from the 2026 Startup Trek
           </p>
 
           {/* Image counter */}
