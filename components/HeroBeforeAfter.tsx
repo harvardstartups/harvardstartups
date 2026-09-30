@@ -52,6 +52,7 @@ export function HeroBeforeAfter({
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const sentinelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
   const clickScrollUntilRef = useRef<number>(0);
@@ -66,9 +67,9 @@ export function HeroBeforeAfter({
     const update = () => {
       const rect = section.getBoundingClientRect();
       const sectionTop = rect.top + window.scrollY;
-      const sectionHeight = section.offsetHeight;
+      const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
       const scrollY = window.scrollY;
-      const raw = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
+      const raw = Math.max(0, Math.min(1, (scrollY - sectionTop) / scrollTravel));
       const progress = scrollProgressCurve(raw);
       setScrollProgress(progress);
 
@@ -91,8 +92,10 @@ export function HeroBeforeAfter({
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [stories.length]);
@@ -115,10 +118,10 @@ export function HeroBeforeAfter({
     setActiveIndex(nextIndex);
 
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const sectionHeight = section.offsetHeight;
+    const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
     const targetProgress = (nextIndex + 0.5) / stories.length;
     const raw = rawScrollForProgress(targetProgress);
-    const targetScroll = sectionTop + raw * sectionHeight;
+    const targetScroll = sectionTop + raw * scrollTravel;
     window.scrollTo({ top: targetScroll, behavior: "smooth" });
   };
 
@@ -147,7 +150,7 @@ export function HeroBeforeAfter({
       </div>
 
       {/* Sticky viewport */}
-      <div className="sticky top-0 min-h-screen flex items-start pt-12 md:items-center justify-center px-4 py-8 md:py-16 z-10 relative">
+      <div ref={stickyRef} className="sticky top-0 min-h-screen flex items-start pt-12 md:items-center justify-center px-4 py-8 md:py-16 z-10 relative">
         {/* Desktop: 3-column (during | names | now) */}
         {/* Mobile: names on top, then two images side by side */}
         <div className="w-full max-w-6xl flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-16 lg:gap-20 items-center md:items-start">
