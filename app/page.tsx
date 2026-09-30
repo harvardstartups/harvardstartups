@@ -2,6 +2,8 @@
 
 import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useState } from "react";
+import { JoinActions } from "@/components/JoinActions";
+import { TREK_APPLICATION_URL } from "@/lib/links";
 import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
@@ -31,6 +33,7 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
             Startups at Harvard is a community of students who enjoy building products that people love.
           </p>
+          <JoinActions />
         </div>
         <SpotlightImages />
       </section>
@@ -90,41 +93,35 @@ export default function Home() {
           />
         </div>
       </div>
+      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-3xl mx-auto">
+        <h2 id="programs-heading" className="text-center mb-8">What we do</h2>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Startup Series</h3>
+            <p>Every other Tuesday, we explore an up-and-coming startup: its product, team, and market. We also invite founders and operators to join us for Q&amp;A.</p>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">10-K Reading Club</h3>
+            <p>On alternating Tuesdays, we read public companies’ annual and quarterly reports, comparing businesses in the same industry and learning what drives their performance.</p>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Member Grants</h3>
+            <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required.</p>
+            <details className="mt-3 text-sm text-stone-700">
+              <summary className="cursor-pointer underline underline-offset-4">What grants can support</summary>
+              <p className="mt-2">Selected companies can use funds at their discretion for early experimentation, including hardware, model and API costs, legal setup, and advertising.</p>
+            </details>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Startup Trek</h3>
+            <p>A fully funded, five-day trip to New York City in early 2027. Visit startups and VC firms, meet the people building them, and explore what you could build next.</p>
+            <a href={TREK_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for Startup Trek 2027 ↗</a>
+            <p className="text-sm text-stone-600 mt-1">Apply by October 10. Grace period through October 12.</p>
+          </article>
+        </div>
+      </section>
       <div className="p-5 max-w-xl mx-auto">
-        <div className="section">
-          <h2>Startup Series</h2>
-          <p>
-            Every other Tuesday, we choose an up-and-coming startup to read about and discuss together. We focus on product, team construction, and market opportunity. Typically, we also invite a guest speaker from the company to join us for Q&A. 
-            {/* Some of the startups we&apos;ve learned about include Suno, Glean, Pinecone, Notion, and Vercel. */}
-          </p>
-        </div>
-        <div className="section">
-          <h2>10-K Reading Club</h2>
-          <p>
-            On other Tuesdays, we dive deep into the annual reports (10-K/10-Q SEC filings) of publicly-traded companies. We compare companies within the same industry, focusing on financial performance. 
-          </p>
-        </div>
-        <div className="section">
-          <h2>Member Grants</h2>
-          <p>
-          We are piloting a non-dilutive funding program to support early-stage, pre-revenue startups formed by our members, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>.
-          Selected companies may receive up to $10k in funding to support early experimentation and company formation. 
-          Funds are provided without expectation of equity and may be used at the company&apos;s discretion.
-          </p>
-          <ul>
-            <li>hardware expenses (e.g. CNC mills, 3D printers)</li>
-            <li>model costs (e.g. API token credits, GPU credits)</li>
-            <li>legal costs (e.g. C Corp formation, TOS agreements)</li>
-            <li>advertising (e.g. Google Ads)</li>
-          </ul>
-        </div>
-        <div className="section">
-          <h2>Startup Trek</h2>
-          <p>
-            Before second semester every year, we organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems. 
-            Several past participants have joined startups we&apos;ve visited postgrad.
-            For updates on future treks, fill out the interest form below.
-          </p>
+        <section aria-label="Photos from the 2026 Startup Trek" className="section">
           <div className="relative mt-4">
             <div className="relative w-full h-auto">
               <Image
@@ -164,26 +161,12 @@ export default function Home() {
           <p className="text-center mt-2">
             {currentIndex + 1} / {trekImages.length}
           </p>
-        </div>
-        {/* <div className="section">
-          <h2>And more</h2>
-          <p>
-            Community socials, build sessions, and startup talks.
-          </p>
-        </div> */}
+        </section>
         <div className="section">
-          <h2>Join us</h2>
-          <p className="mb-2">
-            If you&apos;re a student interested in joining our events this semester, please fill out this {" "}
-            <a
-              href="https://forms.gle/QaEMsb7BAGcBN81y7"
-              target="_blank"
-              className="underline"
-            >
-              interest form
-            </a>
-            .
-          </p>
+          <h2 id="join-us">Join Us</h2>
+          <p>Meet other student builders, join our events, or apply for the next Startup Trek.</p>
+          <JoinActions />
+          <div className="h-5" />
           <p>
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
