@@ -83,7 +83,7 @@ function PoppingSlot({
 }) {
   const positions = ZONE_POSITIONS[side][zone];
   const [isVisible, setIsVisible] = useState(false);
-  const [position, setPosition] = useState<[number, number]>(() => pickRandom(positions));
+  const [position, setPosition] = useState<[number, number]>(positions[0]);
 
   const onCycleRef = useRef(onCycle);
   onCycleRef.current = onCycle;
@@ -91,6 +91,7 @@ function PoppingSlot({
   positionsRef.current = positions;
 
   useEffect(() => {
+    setPosition(pickRandom(positionsRef.current));
     let fadeTimer: ReturnType<typeof setTimeout>;
     let showTimer: ReturnType<typeof setTimeout>;
     let cycleTimer: ReturnType<typeof setTimeout>;
@@ -162,11 +163,16 @@ function PoppingSlot({
 }
 
 export function SpotlightImages() {
-  const [indices, setIndices] = useState<[number, number, number, number]>(() =>
-    pickFourDistinctIndices(IMAGE_POOL.length)
-  );
+  // Match the server render; randomize only after hydration.
+  const [indices, setIndices] = useState<[number, number, number, number]>([0, 1, 2, 3]);
   const indicesRef = useRef(indices);
   indicesRef.current = indices;
+
+  useEffect(() => {
+    const initial = pickFourDistinctIndices(IMAGE_POOL.length);
+    indicesRef.current = initial;
+    setIndices(initial);
+  }, []);
 
   const makeCycle = useCallback((slotIndex: 0 | 1 | 2 | 3) => {
     return () => {
