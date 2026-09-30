@@ -48,7 +48,13 @@ export default function Home() {
             <br />
             <br />
             We meet every Tuesday for 1 hour to discuss various topics related to building companies. 
-            Former student members have founded startups with an aggregate valuation of over $X00m.
+            Members have gone on to build{" "}
+            <a href="https://sapien.ai/blog/sapien-seed-round-general-catalyst" target="_blank" rel="noopener noreferrer" className="underline">Sapien</a>
+            {" "}($8.7M seed),{" "}
+            <a href="https://greylock.com/blog/introducing-altara-ai-for-the-physical-sciences/" target="_blank" rel="noopener noreferrer" className="underline">Altara</a>
+            {" "}($7M seed), and{" "}
+            <a href="https://www.indexventures.com/startup-jobs/intelligence/open-application-1/" target="_blank" rel="noopener noreferrer" className="underline">Design Arena</a>
+            {" "}(over 5 million users).
           </p>
         </div>
       </div>
