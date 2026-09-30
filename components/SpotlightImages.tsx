@@ -3,15 +3,14 @@
 import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useEffect, useState, useCallback, useRef, type CSSProperties } from "react";
 
+// Start with a mix of years, then cycle through the full trek archive.
 const IMAGE_POOL = [
+  "/founders/ron_2024.jpg",
+  "/founders/grace_2025.jpg",
   "/startup_trek_2026/1.jpg",
-  "/startup_trek_2026/2.jpg",
-  "/startup_trek_2026/3.jpg",
-  "/startup_trek_2026/4.jpg",
-  "/startup_trek_2026/5.jpg",
-  "/startup_trek_2026/6.jpg",
-  "/startup_trek_2026/7.jpg",
-  "/startup_trek_2026/8.jpg",
+  "/founders/eva_2024.jpg",
+  ...Array.from({ length: 18 }, (_, i) => `/startup_trek/${i + 1}.jpg`),
+  ...Array.from({ length: 7 }, (_, i) => `/startup_trek_2026/${i + 2}.jpg`),
 ];
 
 // Zones keep the four images well separated: upper vs lower, left vs right.
@@ -47,16 +46,6 @@ function randomBetween(a: number, b: number) {
 
 function pickRandom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-/** Pick 4 distinct indices from [0..length-1]. */
-function pickFourDistinctIndices(length: number): [number, number, number, number] {
-  const indices = Array.from({ length }, (_, i) => i);
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-  return [indices[0], indices[1], indices[2], indices[3]];
 }
 
 /** Pick one index that is not in the excluded set. */
@@ -157,17 +146,10 @@ function PoppingSlot({
 }
 
 export function SpotlightImages() {
-  // Match the server render; randomize only after hydration.
+  // Deterministic first frame includes 2024, 2025, and 2026.
   const [indices, setIndices] = useState<[number, number, number, number]>([0, 1, 2, 3]);
   const indicesRef = useRef(indices);
   indicesRef.current = indices;
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const initial = pickFourDistinctIndices(IMAGE_POOL.length);
-    indicesRef.current = initial;
-    setIndices(initial);
-  }, []);
 
   const makeCycle = useCallback((slotIndex: 0 | 1 | 2 | 3) => {
     return () => {
