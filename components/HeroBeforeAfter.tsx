@@ -146,7 +146,7 @@ export function HeroBeforeAfter({
       {/* Sticky viewport */}
       <div ref={stickyRef} className="sticky top-0 min-h-screen flex flex-col items-center justify-center px-4 py-4 md:py-16 z-10">
         <header className="text-center max-w-xl mx-auto mb-3 md:mb-14">
-          <h2 id="alumni-heading">Where builders see new possibilities</h2>
+          <h2 id="alumni-heading">Former Members</h2>
           <p className="text-sm text-stone-600">Previous trek members, and what they’re building now.</p>
         </header>
         {/* Desktop: 3-column (during | names | now) */}
