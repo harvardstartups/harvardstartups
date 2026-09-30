@@ -3,7 +3,7 @@ import type { FounderStory } from "@/components/HeroBeforeAfter";
 /**
  * Founder / company stories for the landing hero.
  * Participation and photos are maintained by Startups at Harvard.
- * Accomplishment sources are linked in the About section (verified September 2026).
+ * Accomplishment sources are linked in the member outcomes sections (verified September 2026).
  */
 export const heroStories: FounderStory[] = [
   {
