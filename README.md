@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## VC outbound copy notes
+
+Keep startup career outcomes in VC outbound copy rather than in a separate homepage section. Pair these examples with the founder outcomes to show how the trek connects students with early teams. No outbound messages have been sent.
+
+Suggested copy: “Our members go on to build companies and join early startup teams. Caleb Capoccia joined Bandana after visiting on the trek, later joined Nominal, and helped organize the 2026 trek. Cofounder Cynthia Chen is now an engineer at Decagon.”
+
+Supporting references (checked September 30, 2026; recheck roles before sending):
+
+- [Caleb Capoccia](https://www.linkedin.com/in/calebcapoccia): Bandana internship after the trek, then software engineer at [Nominal](https://nominal.io/). Trek connection and organizing role were documented in the website research.
+- [Cynthia Chen](https://chenxcynthia.github.io/): Startups at Harvard cofounder and engineer at [Decagon](https://decagon.ai/).
+
+Use these as concrete examples, without implying every role resulted from the trek or that any company or investor endorses the organization.

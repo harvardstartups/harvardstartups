@@ -92,16 +92,6 @@ export default function Home() {
       </div>
       <div className="p-5 max-w-xl mx-auto">
         <div className="section">
-          <h2>Members joining startups</h2>
-          <p className="mb-3">
-            <a href="https://www.linkedin.com/in/calebcapoccia" target="_blank" rel="noopener noreferrer" className="underline"><strong>Caleb Capoccia</strong></a> joined <a href="https://bandana.com/" target="_blank" rel="noopener noreferrer" className="underline">Bandana</a> as a software engineering intern after visiting on the trek.
-            {" "}He later joined <a href="https://nominal.io/" target="_blank" rel="noopener noreferrer" className="underline">Nominal</a> as a software engineer and helped organize the 2026 trek.
-          </p>
-          <p>
-            <a href="https://chenxcynthia.github.io/" target="_blank" rel="noopener noreferrer" className="underline"><strong>Cynthia Chen</strong></a>, a cofounder of Startups at Harvard, is an engineer at <a href="https://decagon.ai/" target="_blank" rel="noopener noreferrer" className="underline">Decagon</a>, building AI agents for customer support.
-          </p>
-        </div>
-        <div className="section">
           <h2>Startup Series</h2>
           <p>
             Every other Tuesday, we choose an up-and-coming startup to read about and discuss together. We focus on product, team construction, and market opportunity. Typically, we also invite a guest speaker from the company to join us for Q&A. 
