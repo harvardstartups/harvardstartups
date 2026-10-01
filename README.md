@@ -48,3 +48,22 @@ Supporting references (checked September 30, 2026; recheck roles before sending)
 - [Cynthia Chen](https://chenxcynthia.github.io/): Startups at Harvard cofounder and engineer at [Decagon](https://decagon.ai/).
 
 Use these as concrete examples, without implying every role resulted from the trek or that any company or investor endorses the organization.
+
+
+## Homepage call-to-action audit (October 1, 2026)
+
+Compared the live original at https://startupsatharvard.com with this branch, including rendered links and program descriptions. The deployed original includes a grant application link that is absent from the repository’s main branch.
+
+| Original aspect | Current placement |
+| --- | --- |
+| Membership / event interest form | Join Us buttons in the introduction and closing section; original form retained |
+| Grant application and rolling review | Apply for a grant link and rolling-review note in Member Grants; original form retained |
+| Startup engagement contact | Original email link in Join Us |
+| Donations / sponsorship contact | Original email link and donation information in Supporters |
+| Supporter websites | All original supporter destinations retained |
+| Startup Series and reading club | Both retained under What we do; membership form remains the entry point |
+| Grant funding, eligibility, and permitted uses | Summary and expandable uses retained |
+| Trek participation | Closed 2026 application message replaced with the verified 2027 application link |
+| Trek gallery and founder navigation | Previous/next gallery controls and member navigation retained |
+
+Grant application: https://forms.gle/fotq1aWRD9hbEK7B7 (verified title: “S@H grant application”). The form currently says “$5k or more” and “pre/early-revenue,” while the original website says “up to $10k” and “pre-revenue.” Confirm those details with the organizers; this link-restoration change preserves the website’s existing terms. The form also retains a summer processing note. No forms were submitted or edited during verification.

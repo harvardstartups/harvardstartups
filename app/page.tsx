@@ -3,7 +3,7 @@
 import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useState } from "react";
 import { JoinActions } from "@/components/JoinActions";
-import { TREK_APPLICATION_URL } from "@/lib/links";
+import { GRANT_APPLICATION_URL, TREK_APPLICATION_URL } from "@/lib/links";
 import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
@@ -111,6 +111,8 @@ export default function Home() {
               <summary className="cursor-pointer underline underline-offset-4">What grants can support</summary>
               <p className="mt-2">Selected companies can use funds at their discretion for early experimentation, including hardware, model and API costs, legal setup, and advertising.</p>
             </details>
+            <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for a grant ↗</a>
+            <p className="text-sm text-stone-600 mt-1">Applications are reviewed on a rolling basis.</p>
           </article>
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Startup Trek</h3>
