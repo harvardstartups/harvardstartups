@@ -61,8 +61,8 @@ Compared the live original at https://startupsatharvard.com with this branch, in
 | Startup engagement contact | Original email link in Join Us |
 | Donations / sponsorship contact | Original email link and donation information in Supporters |
 | Supporter websites | All original supporter destinations retained |
-| Startup Series and reading club | Both retained under What we do; membership form remains the entry point |
-| Grant funding, eligibility, and permitted uses | Summary and expandable uses retained |
+| Startup Series and reading club | Both retained under What we do, each with a Get event updates link to the shared interest form |
+| Grant funding and eligibility | Summary retained; detailed spending examples intentionally removed for brevity |
 | Trek participation | Closed 2026 application message replaced with the verified 2027 application link |
 | Trek gallery and founder navigation | Previous/next gallery controls and member navigation retained |
 

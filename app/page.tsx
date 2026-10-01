@@ -3,7 +3,7 @@
 import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useState } from "react";
 import { JoinActions } from "@/components/JoinActions";
-import { GRANT_APPLICATION_URL, TREK_APPLICATION_URL } from "@/lib/links";
+import { GRANT_APPLICATION_URL, JOIN_FORM_URL, TREK_APPLICATION_URL } from "@/lib/links";
 import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
@@ -99,18 +99,16 @@ export default function Home() {
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Startup Series</h3>
             <p>Every other Tuesday, we explore an up-and-coming startup: its product, team, and market. We also invite founders and operators to join us for Q&amp;A.</p>
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Get event updates ↗</a>
           </article>
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">10-K Reading Club</h3>
             <p>On alternating Tuesdays, we read public companies’ annual and quarterly reports, comparing businesses in the same industry and learning what drives their performance.</p>
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Get event updates ↗</a>
           </article>
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Member Grants</h3>
             <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required.</p>
-            <details className="mt-3 text-sm text-stone-700">
-              <summary className="cursor-pointer underline underline-offset-4">What grants can support</summary>
-              <p className="mt-2">Selected companies can use funds at their discretion for early experimentation, including hardware, model and API costs, legal setup, and advertising.</p>
-            </details>
             <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for a grant ↗</a>
             <p className="text-sm text-stone-600 mt-1">Applications are reviewed on a rolling basis.</p>
           </article>
