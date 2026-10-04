@@ -10,33 +10,8 @@ type HeroBeforeAfterProps = {
   duringLabel?: string;
 };
 
-// Row height for each name; also used so active name stays centered in the viewport
-const NAME_ROW_HEIGHT_REM = 5;
-// Keep the moving names below the section heading.
-const SCROLL_SPEED = 0.2;
-
-// Progress curve: scroll share per story (Ron less, Grace more)
-const SCROLL_SHARE_0 = 0.15; // Ron Nachum: 18%
-const SCROLL_SHARE_1 = 0.35; // middle story: 27%
-// Story 2 (Grace Li) gets the rest: 55%
-const N_STORIES = 3;
-
-const FIRST_END = SCROLL_SHARE_0;
-const SECOND_END = SCROLL_SHARE_0 + SCROLL_SHARE_1;
-
-function scrollProgressCurve(t: number): number {
-  const raw = Math.max(0, Math.min(1, t));
-  if (raw <= FIRST_END) return (raw / FIRST_END) * (1 / N_STORIES);
-  if (raw <= SECOND_END) return (1 / N_STORIES) + ((raw - FIRST_END) / (SECOND_END - FIRST_END)) * (1 / N_STORIES);
-  return (2 / N_STORIES) + ((raw - SECOND_END) / (1 - SECOND_END)) * (1 / N_STORIES);
-}
-
-function rawScrollForProgress(progress: number): number {
-  const p = Math.max(0, Math.min(1, progress));
-  if (p <= 1 / N_STORIES) return (p / (1 / N_STORIES)) * FIRST_END;
-  if (p <= 2 / N_STORIES) return FIRST_END + ((p - 1 / N_STORIES) / (1 / N_STORIES)) * (SECOND_END - FIRST_END);
-  return SECOND_END + ((p - 2 / N_STORIES) / (1 / N_STORIES)) * (1 - SECOND_END);
-}
+// Keep navigation stationary while the photos and captions crossfade.
+const NAME_ROW_HEIGHT_REM = 4;
 
 export function HeroBeforeAfter({
   stories,
@@ -57,16 +32,13 @@ export function HeroBeforeAfter({
       document.body.style.overflow = overflow;
     };
   }, [expandedPhoto]);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const sentinelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number>(0);
   const clickScrollUntilRef = useRef<number>(0);
   const clickTargetIndexRef = useRef<number>(0);
 
-  // Scroll-driven: update progress and active index from scroll position (RAF for smoothness)
+  // Derive the active story from a stable scroll range (RAF for smoothness).
   useEffect(() => {
     if (stories.length === 0) return;
     const section = sectionRef.current;
@@ -77,9 +49,7 @@ export function HeroBeforeAfter({
       const sectionTop = rect.top + window.scrollY;
       const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
       const scrollY = window.scrollY;
-      const raw = Math.max(0, Math.min(1, (scrollY - sectionTop) / scrollTravel));
-      const progress = scrollProgressCurve(raw);
-      setScrollProgress(progress);
+      const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / scrollTravel));
 
       const now = Date.now();
       if (now < clickScrollUntilRef.current) {
@@ -108,14 +78,6 @@ export function HeroBeforeAfter({
     };
   }, [stories.length]);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
   const handleTransition = (nextIndex: number) => {
     if (nextIndex === activeIndex) return;
     const section = sectionRef.current;
@@ -128,8 +90,7 @@ export function HeroBeforeAfter({
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
     const targetProgress = (nextIndex + 0.5) / stories.length;
-    const raw = rawScrollForProgress(targetProgress);
-    const targetScroll = sectionTop + raw * scrollTravel;
+    const targetScroll = sectionTop + targetProgress * scrollTravel;
     window.scrollTo({ top: targetScroll, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   };
 
@@ -141,26 +102,13 @@ export function HeroBeforeAfter({
     <section
       ref={sectionRef}
       className="relative bg-[#faf9f7]"
-      style={{ height: `${stories.length * 100}vh` }}
+      style={{ height: `${stories.length * 100}svh` }}
       aria-label="Founder journeys"
     >
-      {/* Scroll sentinels: create height so scrolling triggers active index */}
-      <div className="absolute inset-0 pointer-events-none flex flex-col" aria-hidden>
-        {stories.map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => {
-              sentinelRefs.current[i] = el;
-            }}
-            className="flex-shrink-0 w-full h-screen"
-          />
-        ))}
-      </div>
-
       {/* Sticky viewport */}
-      <div ref={stickyRef} className="sticky top-0 min-h-[60vh] flex flex-col items-center justify-center px-4 py-4 md:py-12 z-10">
+      <div ref={stickyRef} className="sticky top-0 min-h-[100svh] flex flex-col items-center justify-center px-4 py-4 md:py-12 z-10">
         {/* Desktop: 3-column (during | names | now) */}
-        {/* Mobile: names on top, then two images side by side */}
+        {/* Mobile: names on top, then stacked images */}
         <div className="w-full max-w-6xl flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 lg:gap-16 items-center md:items-start">
 
           {/* Mobile names: compact – just the active name + dot indicators */}
@@ -184,7 +132,7 @@ export function HeroBeforeAfter({
             </div>
           </div>
 
-          {/* Desktop names: scroll-driven list in center column */}
+          {/* Desktop names: stable navigation in the center column */}
           <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-48 lg:w-64 shrink-0">
             <div
               className="flex flex-col justify-center items-center w-full overflow-visible"
@@ -194,9 +142,6 @@ export function HeroBeforeAfter({
             >
               <div
                 className="flex flex-col justify-center items-center w-full"
-                style={{
-                  transform: `translateY(-${scrollProgress * (stories.length - 1) * SCROLL_SPEED * NAME_ROW_HEIGHT_REM}rem)`,
-                }}
               >
                 {stories.map((story, i) => (
                   <button
@@ -238,7 +183,7 @@ export function HeroBeforeAfter({
                   >
                     <Image
                       src={story.duringImage}
-                      alt={`${story.name} on the Startup Trek`}
+                      alt={story.duringAlt ?? `${story.name} on the Startup Trek`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 90vw, 33vw"
@@ -262,7 +207,7 @@ export function HeroBeforeAfter({
                     <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.teamAlt}`} onClick={() => setExpandedPhoto({src: story.teamImage, alt: story.teamAlt})} className="absolute left-0 top-0 w-[78%] h-[72%] overflow-hidden rounded-lg shadow-md">
                       <Image src={story.teamImage} alt={story.teamAlt} fill className="object-cover" sizes="(max-width: 768px) 65vw, 26vw" />
                     </button>
-                    {story.id !== "grace" && <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.portraitAlt}`} onClick={() => setExpandedPhoto({src: story.portrait, alt: story.portraitAlt})} className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                    {story.showPortrait !== false && <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.portraitAlt}`} onClick={() => setExpandedPhoto({src: story.portrait, alt: story.portraitAlt})} className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
                       <Image src={story.portrait} alt={story.portraitAlt} fill className="object-cover" style={{objectPosition: story.portraitPosition}} sizes="(max-width: 768px) 25vw, 10vw" />
                     </button>}
                     <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${`${story.company} website`}`} onClick={() => setExpandedPhoto({src: story.websiteImage, alt: `${story.company} website`})} className="absolute right-0 bottom-0 w-[67%] h-[51%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
@@ -275,23 +220,26 @@ export function HeroBeforeAfter({
           </div>
         </div>
 
-        <div className="mt-5 md:mt-8 max-w-2xl text-center text-sm leading-relaxed text-stone-600">
-          <p>
-            {current.trek}{" "}
-            <a href={current.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{current.company}</a>
-            {current.metrics.map((metric, i) => <span key={metric.label}>
-              {metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
-              {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
-            </span>)}
-          </p>
+        {/* All captions share a grid cell, reserving the tallest caption's height.
+            Switching stories cannot resize the sticky panel or its scroll travel. */}
+        <div className="mt-5 md:mt-8 grid w-full max-w-2xl text-center text-sm leading-relaxed text-stone-600">
+          {stories.map((story, index) => (
+            <p key={story.id} aria-hidden={index !== activeIndex}
+              className={`col-start-1 row-start-1 transition-opacity duration-500 motion-reduce:transition-none ${index === activeIndex ? "opacity-100" : "invisible opacity-0 pointer-events-none"}`}>
+              {story.trek}{" "}
+              <a href={story.website} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.company}</a>
+              {story.metrics.length === 0 ? "." : story.metrics.map((metric, i) => <span key={metric.label}>
+                {metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
+                {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
+              </span>)}
+              {story.announcement && <> {" "}<a href={story.announcement.url} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.announcement.label} ↗</a></>}
+            </p>
+          ))}
         </div>
 
-        {/* Scroll hint (desktop only) */}
-        {isDesktop && activeIndex < 2 && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-sm transition-opacity duration-300">
-            <p className="text-center">Scroll to see more</p>
-          </div>
-        )}
+        <div aria-hidden className={`hidden md:block mt-8 text-stone-400 text-sm transition-opacity duration-300 motion-reduce:transition-none ${activeIndex < stories.length - 1 ? "opacity-100" : "opacity-0"}`}>
+          <p className="text-center">Scroll to see more</p>
+        </div>
       </div>
       <dialog ref={dialogRef} aria-label={expandedPhoto?.alt || "Expanded photo"}
         onCancel={() => setExpandedPhoto(null)} onClose={() => setExpandedPhoto(null)}
