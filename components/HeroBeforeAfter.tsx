@@ -1,63 +1,44 @@
 "use client";
 
-import Image from "next/image";
+import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useEffect, useRef, useState } from "react";
 
-export type FounderStory = {
-  companyName: string;
-  duringImage: string;
-  nowImage: string;
-  duringCaption: string;
-  nowCaption: string;
-};
+import type { FounderStory } from "@/lib/hero-stories";
 
 type HeroBeforeAfterProps = {
   stories: FounderStory[];
   duringLabel?: string;
 };
 
-// Row height for each name; also used so active name stays centered in the viewport
-const NAME_ROW_HEIGHT_REM = 5;
-// How much the list moves per unit scroll ( > 1 = faster )
-const SCROLL_SPEED = 1.35;
-
-// Progress curve: scroll share per story (Ron less, Grace more)
-const SCROLL_SHARE_0 = 0.15; // Ron Nachum: 18%
-const SCROLL_SHARE_1 = 0.35; // middle story: 27%
-// Story 2 (Grace Li) gets the rest: 55%
-const N_STORIES = 3;
-
-const FIRST_END = SCROLL_SHARE_0;
-const SECOND_END = SCROLL_SHARE_0 + SCROLL_SHARE_1;
-
-function scrollProgressCurve(t: number): number {
-  const raw = Math.max(0, Math.min(1, t));
-  if (raw <= FIRST_END) return (raw / FIRST_END) * (1 / N_STORIES);
-  if (raw <= SECOND_END) return (1 / N_STORIES) + ((raw - FIRST_END) / (SECOND_END - FIRST_END)) * (1 / N_STORIES);
-  return (2 / N_STORIES) + ((raw - SECOND_END) / (1 - SECOND_END)) * (1 / N_STORIES);
-}
-
-function rawScrollForProgress(progress: number): number {
-  const p = Math.max(0, Math.min(1, progress));
-  if (p <= 1 / N_STORIES) return (p / (1 / N_STORIES)) * FIRST_END;
-  if (p <= 2 / N_STORIES) return FIRST_END + ((p - 1 / N_STORIES) / (1 / N_STORIES)) * (SECOND_END - FIRST_END);
-  return SECOND_END + ((p - 2 / N_STORIES) / (1 / N_STORIES)) * (1 - SECOND_END);
-}
+// Keep navigation stationary while the photos and captions crossfade.
+const NAME_ROW_HEIGHT_REM = 4;
 
 export function HeroBeforeAfter({
   stories,
   duringLabel = "Then",
 }: HeroBeforeAfterProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [expandedPhoto, setExpandedPhoto] = useState<{src: string; alt: string} | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!expandedPhoto || !dialog) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
+    return () => {
+      dialog.close();
+      document.body.style.overflow = overflow;
+    };
+  }, [expandedPhoto]);
   const sectionRef = useRef<HTMLElement>(null);
-  const sentinelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const clickScrollUntilRef = useRef<number>(0);
   const clickTargetIndexRef = useRef<number>(0);
 
-  // Scroll-driven: update progress and active index from scroll position (RAF for smoothness)
+  // Derive the active story from a stable scroll range (RAF for smoothness).
   useEffect(() => {
     if (stories.length === 0) return;
     const section = sectionRef.current;
@@ -66,11 +47,9 @@ export function HeroBeforeAfter({
     const update = () => {
       const rect = section.getBoundingClientRect();
       const sectionTop = rect.top + window.scrollY;
-      const sectionHeight = section.offsetHeight;
+      const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
       const scrollY = window.scrollY;
-      const raw = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-      const progress = scrollProgressCurve(raw);
-      setScrollProgress(progress);
+      const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / scrollTravel));
 
       const now = Date.now();
       if (now < clickScrollUntilRef.current) {
@@ -91,19 +70,13 @@ export function HeroBeforeAfter({
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [stories.length]);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    setIsDesktop(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
 
   const handleTransition = (nextIndex: number) => {
     if (nextIndex === activeIndex) return;
@@ -115,11 +88,10 @@ export function HeroBeforeAfter({
     setActiveIndex(nextIndex);
 
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const sectionHeight = section.offsetHeight;
+    const scrollTravel = Math.max(1, section.offsetHeight - (stickyRef.current?.offsetHeight ?? window.innerHeight));
     const targetProgress = (nextIndex + 0.5) / stories.length;
-    const raw = rawScrollForProgress(targetProgress);
-    const targetScroll = sectionTop + raw * sectionHeight;
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    const targetScroll = sectionTop + targetProgress * scrollTravel;
+    window.scrollTo({ top: targetScroll, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   };
 
   if (stories.length === 0) return null;
@@ -130,32 +102,19 @@ export function HeroBeforeAfter({
     <section
       ref={sectionRef}
       className="relative bg-[#faf9f7]"
-      style={{ height: `${stories.length * 100}vh` }}
+      style={{ height: `${stories.length * 100}svh` }}
       aria-label="Founder journeys"
     >
-      {/* Scroll sentinels: create height so scrolling triggers active index */}
-      <div className="absolute inset-0 pointer-events-none flex flex-col" aria-hidden>
-        {stories.map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => {
-              sentinelRefs.current[i] = el;
-            }}
-            className="flex-shrink-0 w-full h-screen"
-          />
-        ))}
-      </div>
-
       {/* Sticky viewport */}
-      <div className="sticky top-0 min-h-screen flex items-start pt-12 md:items-center justify-center px-4 py-8 md:py-16 z-10 relative">
+      <div ref={stickyRef} className="sticky top-0 min-h-[100svh] flex flex-col items-center justify-center px-4 py-4 md:py-12 z-10">
         {/* Desktop: 3-column (during | names | now) */}
-        {/* Mobile: names on top, then two images side by side */}
-        <div className="w-full max-w-6xl flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-16 lg:gap-20 items-center md:items-start">
+        {/* Mobile: names on top, then stacked images */}
+        <div className="w-full max-w-6xl flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 lg:gap-16 items-center md:items-start">
 
           {/* Mobile names: compact – just the active name + dot indicators */}
           <div className="flex md:hidden flex-col items-center order-first w-full py-2">
             <p className="font-serif text-2xl italic text-stone-900 transition-all duration-300">
-              {current.companyName}
+              {current.name}
             </p>
             <div className="flex gap-2 mt-2">
               {stories.map((_, i) => (
@@ -163,17 +122,18 @@ export function HeroBeforeAfter({
                   key={i}
                   type="button"
                   onClick={() => handleTransition(i)}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                    i === activeIndex ? "bg-stone-800" : "bg-stone-300"
+                  className={`w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#951929] ${
+                    i === activeIndex ? "text-stone-800" : "text-stone-300"
                   }`}
-                  aria-label={`Go to ${stories[i].companyName}`}
-                />
+                  aria-label={`Go to ${stories[i].name}`}
+                  aria-pressed={i === activeIndex}
+                ><span aria-hidden className="w-2 h-2 rounded-full bg-current" /></button>
               ))}
             </div>
           </div>
 
-          {/* Desktop names: scroll-driven list in center column */}
-          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-64 shrink-0">
+          {/* Desktop names: stable navigation in the center column */}
+          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-48 lg:w-64 shrink-0">
             <div
               className="flex flex-col justify-center items-center w-full overflow-visible"
               style={{
@@ -182,24 +142,22 @@ export function HeroBeforeAfter({
             >
               <div
                 className="flex flex-col justify-center items-center w-full"
-                style={{
-                  transform: `translateY(-${scrollProgress * (stories.length - 1) * SCROLL_SPEED * NAME_ROW_HEIGHT_REM}rem)`,
-                }}
               >
                 {stories.map((story, i) => (
                   <button
-                    key={story.companyName + i}
+                    key={story.name + i}
+                    aria-pressed={i === activeIndex}
                     type="button"
                     onClick={() => handleTransition(i)}
                     className={`
-                      w-full text-center transition-opacity duration-300 flex items-center justify-center shrink-0 font-serif italic text-3xl lg:text-4xl text-stone-900 whitespace-nowrap
+                      w-full text-center transition-opacity duration-300 flex items-center justify-center shrink-0 font-serif italic text-2xl lg:text-3xl text-stone-900 whitespace-nowrap
                       ${i === activeIndex
-                        ? "font-semibold"
-                        : "font-normal text-stone-500 hover:text-stone-700"}
+                        ? "font-normal"
+                        : "font-normal opacity-40 hover:opacity-75"}
                     `}
                     style={{ minHeight: `${NAME_ROW_HEIGHT_REM}rem` }}
                   >
-                    {story.companyName}
+                    {story.name}
                   </button>
                 ))}
               </div>
@@ -213,11 +171,11 @@ export function HeroBeforeAfter({
               <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 {duringLabel}
               </p>
-              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
+              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
                 {stories.map((story, i) => (
                   <div
-                    key={story.companyName + i}
-                    className="absolute inset-0 transition-opacity duration-500 ease-out"
+                    key={story.name + i}
+                    className="absolute inset-0 transition-opacity duration-500 ease-out motion-reduce:transition-none"
                     style={{
                       opacity: i === activeIndex ? 1 : 0,
                       pointerEvents: i === activeIndex ? "auto" : "none",
@@ -225,7 +183,7 @@ export function HeroBeforeAfter({
                   >
                     <Image
                       src={story.duringImage}
-                      alt=""
+                      alt={story.duringAlt ?? `${story.name} on the Startup Trek`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 90vw, 33vw"
@@ -233,11 +191,7 @@ export function HeroBeforeAfter({
                   </div>
                 ))}
               </div>
-              <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <p className="text-xs md:text-sm text-stone-600 line-clamp-2">
-                  {current.duringCaption}
-                </p>
-              </div>
+
             </div>
 
             {/* Now */}
@@ -245,42 +199,60 @@ export function HeroBeforeAfter({
               <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
                 Now
               </p>
-              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
+              <div className="relative w-full max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none">
                 {stories.map((story, i) => (
-                  <div
-                    key={story.companyName + "-now-" + i}
-                    className="absolute inset-0 transition-opacity duration-500 ease-out"
-                    style={{
-                      opacity: i === activeIndex ? 1 : 0,
-                      pointerEvents: i === activeIndex ? "auto" : "none",
-                    }}
-                  >
-                    <Image
-                      src={story.nowImage}
-                      alt=""
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 90vw, 33vw"
-                    />
+                  <div key={story.id} aria-hidden={i !== activeIndex}
+                    className="absolute inset-0 transition-opacity duration-500 ease-out motion-reduce:transition-none"
+                    style={{ opacity: i === activeIndex ? 1 : 0, pointerEvents: i === activeIndex ? "auto" : "none" }}>
+                    <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.teamAlt}`} onClick={() => setExpandedPhoto({src: story.teamImage, alt: story.teamAlt})} className="absolute left-0 top-0 w-[78%] h-[72%] overflow-hidden rounded-lg shadow-md">
+                      <Image src={story.teamImage} alt={story.teamAlt} fill className="object-cover" sizes="(max-width: 768px) 65vw, 26vw" />
+                    </button>
+                    {story.showPortrait !== false && <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${story.portraitAlt}`} onClick={() => setExpandedPhoto({src: story.portrait, alt: story.portraitAlt})} className="absolute right-0 top-[8%] w-[29%] h-[38%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                      <Image src={story.portrait} alt={story.portraitAlt} fill className="object-cover" style={{objectPosition: story.portraitPosition}} sizes="(max-width: 768px) 25vw, 10vw" />
+                    </button>}
+                    <button type="button" tabIndex={i === activeIndex ? 0 : -1} aria-label={`Enlarge ${`${story.company} website`}`} onClick={() => setExpandedPhoto({src: story.websiteImage, alt: `${story.company} website`})} className="absolute right-0 bottom-0 w-[67%] h-[51%] overflow-hidden rounded-lg shadow-md ring-4 ring-[#faf9f7]">
+                      <Image src={story.websiteImage} alt={`${story.company} website`} fill className="object-cover object-top" sizes="(max-width: 768px) 55vw, 23vw" />
+                    </button>
                   </div>
                 ))}
-              </div>
-              <div className="mt-1 md:mt-3 min-h-[1.5rem] md:min-h-[3.5rem] w-full max-w-sm md:max-w-md mx-auto flex items-start justify-center">
-                <p className="text-xs md:text-sm text-stone-600 line-clamp-2">
-                  {current.nowCaption}
-                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll hint (desktop only) */}
-        {isDesktop && activeIndex < 2 && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-400 text-sm transition-opacity duration-300">
-            <p className="text-center">Scroll to see more</p>
-          </div>
-        )}
+        {/* All captions share a grid cell, reserving the tallest caption's height.
+            Switching stories cannot resize the sticky panel or its scroll travel. */}
+        <div className="mt-5 md:mt-8 grid w-full max-w-2xl text-center text-sm leading-relaxed text-stone-600">
+          {stories.map((story, index) => (
+            <p key={story.id} aria-hidden={index !== activeIndex}
+              className={`col-start-1 row-start-1 transition-opacity duration-500 motion-reduce:transition-none ${index === activeIndex ? "opacity-100" : "invisible opacity-0 pointer-events-none"}`}>
+              {story.trek}{" "}
+              <a href={story.website} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.company}</a>
+              {story.metrics.length === 0 ? "." : story.metrics.map((metric, i) => <span key={metric.label}>
+                {metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
+                {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
+              </span>)}
+              {story.announcement && <> {" "}<a href={story.announcement.url} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.announcement.label} ↗</a></>}
+            </p>
+          ))}
+        </div>
+
+        <div aria-hidden className={`hidden md:block mt-8 text-stone-400 text-sm transition-opacity duration-300 motion-reduce:transition-none ${activeIndex < stories.length - 1 ? "opacity-100" : "opacity-0"}`}>
+          <p className="text-center">Scroll to see more</p>
+        </div>
       </div>
+      <dialog ref={dialogRef} aria-label={expandedPhoto?.alt || "Expanded photo"}
+        onCancel={() => setExpandedPhoto(null)} onClose={() => setExpandedPhoto(null)}
+        onClick={event => { if (event.target === event.currentTarget) setExpandedPhoto(null); }}
+        className="w-[94vw] max-w-5xl rounded-xl bg-[#faf9f7] p-4 backdrop:bg-black/70">
+        {expandedPhoto && <>
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <p className="text-sm text-stone-700">{expandedPhoto.alt}</p>
+            <button autoFocus type="button" onClick={() => setExpandedPhoto(null)} className="min-h-11 px-4 rounded border border-stone-300">Close</button>
+          </div>
+          <div className="relative h-[70svh]"><Image src={expandedPhoto.src} alt={expandedPhoto.alt} fill sizes="90vw" className="object-contain" /></div>
+        </>}
+      </dialog>
     </section>
   );
 }

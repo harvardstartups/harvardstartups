@@ -1,0 +1,52 @@
+{
+  "checked": "2026-09-30",
+  "assets": {
+    "sapien-team.webp": {
+      "source": "https://sapien.ai/images/team/team_group_photo.webp",
+      "page": "https://sapien.ai/careers"
+    },
+    "altara-team.avif": {
+      "source": "https://altara.ai/images/careers/couch-team.avif",
+      "page": "https://altara.ai/careers"
+    },
+    "intelligence-team.webp": {
+      "source": "https://www.intelligence.ai/careers/team-1.webp",
+      "page": "https://www.intelligence.ai/careers"
+    },
+    "grace-portrait.jpg": {
+      "page": "https://www.ycombinator.com/companies/design-arena",
+      "description": "Public founder portrait labeled Grace Li"
+    },
+    "sapien-website-2026.jpg": {
+      "page": "https://sapien.ai/",
+      "description": "Homepage screenshot"
+    },
+    "altara-website.jpg": {
+      "page": "https://altara.ai/",
+      "description": "Homepage screenshot"
+    },
+    "design-arena-website.jpg": {
+      "page": "https://www.designarena.ai/",
+      "description": "Product screenshot cropped to exclude the account sidebar"
+    },
+    "sable-team.webp": {
+      "source": "https://framerusercontent.com/images/T2zbo1IEOKr6fIJStquI3jKx7yU.webp?height=1366&width=2048",
+      "page": "https://sequoiacap.com/article/partnering-with-sable-closing-the-diffusion-gap",
+      "checked": "2026-10-04"
+    },
+    "sable-website.png": {
+      "page": "https://withsable.com/",
+      "description": "Homepage screenshot",
+      "checked": "2026-10-04"
+    }
+  },
+  "notes": [
+    "Existing Ron and Eva photos are reused from the original repository.",
+    "Funding amounts, seed rounds and valuation are labeled separately; links in lib/hero-stories.ts support each figure.",
+    "No public valuation verified for Altara or Intelligence.",
+    "Eva met Neo and Grace attended the 2025 trek are retained from the original site.",
+    "Nim\u2019s 2025 trek participation supplied by Eli on October 4, 2026. Existing /headshots/nim.jpg is a portrait, not a verified trek photo. Cofounder and CEO role confirmed by Sequoia\u2019s Sable announcement.",
+    "Sable funding checked October 4, 2026: company press release dated July 16 confirms a $45M financing led by Sequoia Capital and 8VC; Sequoia\u2019s announcement confirms it co-led the Series A. The site labels $45M as raised, with a separate Series A announcement link.",
+    "Photo search on October 4, 2026: repository history contains only Nim\u2019s headshot under his name; the 18 public/startup_trek images have 2024 metadata, while public/startup_trek_2026 is the 2026 collection. The only explicitly 2025-labeled repository image is Grace\u2019s. No 2025 trek album was found in scoped local filename or connected Drive searches. Nim\u2019s headshot remains pending a confirmed trip photo."
+  ]
+}
