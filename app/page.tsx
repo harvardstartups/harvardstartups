@@ -1,15 +1,17 @@
 "use client"; // Add this at the very top of your file
 
-import Image from "next/image";
+import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useState } from "react";
+import { JoinActions } from "@/components/JoinActions";
+import { GRANT_APPLICATION_URL, JOIN_FORM_URL, TREK_APPLICATION_URL } from "@/lib/links";
 import { HeroBeforeAfter } from "@/components/HeroBeforeAfter";
 import { SpotlightImages } from "@/components/SpotlightImages";
 import { heroStories } from "@/lib/hero-stories";
 
 export default function Home() {
-  const trekImages = Array.from({ length: 18 }, (_, i) => ({
-    src: `/startup_trek/${i + 1}.jpg`,
-    alt: `Startup Trek Image ${i + 1}`,
+  const trekImages = Array.from({ length: 8 }, (_, i) => ({
+    src: `/startup_trek_2026/${i + 1}.jpg`,
+    alt: `2026 Startup Trek photo ${i + 1}`,
   }));
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,7 +25,7 @@ export default function Home() {
   };
   return (
     <main className="w-full">
-      <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex items-end justify-center px-5 pt-10 pb-4 md:pt-12 md:pb-6">
+      <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex flex-col items-center justify-end px-5 pt-10 pb-4 md:pt-12 md:pb-6">
         <div className="relative z-10 text-center max-w-2xl">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
             Where student builders meet, learn, and share
@@ -31,10 +33,9 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
             Startups at Harvard is a community of students who enjoy building products that people love.
           </p>
+          <JoinActions variant="hero" />
         </div>
-        <div className="hidden lg:block">
-          <SpotlightImages />
-        </div>
+        <SpotlightImages />
       </section>
 
       <HeroBeforeAfter stories={heroStories} />
@@ -48,7 +49,7 @@ export default function Home() {
             <br />
             <br />
             We meet every Tuesday for 1 hour to discuss various topics related to building companies. 
-            Former student members have founded startups with an aggregate valuation of over $X00m.
+            Our members have gone on to found companies and join early startup teams.
           </p>
         </div>
       </div>
@@ -92,44 +93,32 @@ export default function Home() {
           />
         </div>
       </div>
+      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-3xl mx-auto">
+        <h2 id="programs-heading" className="text-center mb-8">What we do</h2>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Startup Series</h3>
+            <p>Every other Tuesday, we explore an up-and-coming startup: its product, team, and market. We also invite founders and operators to join us for Q&amp;A.</p>
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Get event updates ↗</a>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">10-K Reading Club</h3>
+            <p>On alternating Tuesdays, we read public companies’ annual and quarterly reports, comparing businesses in the same industry and learning what drives their performance.</p>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Member Grants</h3>
+            <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required. Applications are reviewed on a rolling basis.</p>
+            <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for a grant ↗</a>
+          </article>
+          <article className="border-t border-stone-300 pt-4">
+            <h3 className="font-serif text-xl mb-2">Startup Trek</h3>
+            <p>A fully funded, five-day trip to New York City in early 2027. Visit startups and VC firms, meet the people building them, and explore what you could build next. Apply by October 10. Grace period through October 12.</p>
+            <a href={TREK_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for Startup Trek 2027 ↗</a>
+          </article>
+        </div>
+      </section>
       <div className="p-5 max-w-xl mx-auto">
-        <div className="section">
-          <h2>Startup Series</h2>
-          <p>
-            Every other Tuesday, we choose an up-and-coming startup to read about and discuss together. We focus on product, team construction, and market opportunity. Typically, we also invite a guest speaker from the company to join us for Q&A. 
-            {/* Some of the startups we&apos;ve learned about include Suno, Glean, Pinecone, Notion, and Vercel. */}
-          </p>
-        </div>
-        <div className="section">
-          <h2>10-K Reading Club (New!)</h2>
-          <p>
-            On other Tuesdays, we dive deep into the annual reports (10-K/10-Q SEC filings) of publicly-traded companies. We compare companies within the same industry, focusing on financial performance. 
-          </p>
-        </div>
-        <div className="section">
-          <h2>Member Grants (New!)</h2>
-          <p>
-          We are piloting a non-dilutive funding program to support early-stage, pre-revenue startups formed by our members, made possible by our supporters at <a href="https://xfund.com/" target="_blank" className="underline">Xfund</a>.
-          Selected companies may receive up to $10k in funding to support early experimentation and company formation. 
-          Funds are provided without expectation of equity and may be used at the company&apos;s discretion.
-          </p>
-          <ul>
-            <li>hardware expenses (e.g. CNC mills, 3D printers)</li>
-            <li>model costs (e.g. API token credits, GPU credits)</li>
-            <li>legal costs (e.g. C Corp formation, TOS agreements)</li>
-            <li>advertising (e.g. Google Ads)</li>
-          </ul>
-          <p>
-            Apply for a grant <a href="https://forms.gle/fotq1aWRD9hbEK7B7" target="_blank" className="underline">here</a>. Applications will be read on a rolling basis.          
-          </p>
-        </div>
-        <div className="section">
-          <h2>Startup Trek</h2>
-          <p>
-            Before second semester every year, we organize an annual trip for Harvard students to visit high-growth tech startups and ecosystems. 
-            Several past participants have joined startups we&apos;ve visited postgrad.
-            Applications for the Spring 2026 Trek have closed.
-          </p>
+        <section aria-label="Photos from the 2026 Startup Trek" className="section">
           <div className="relative mt-4">
             <div className="relative w-full h-auto">
               <Image
@@ -145,6 +134,7 @@ export default function Home() {
 
             <button
               className="absolute left-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
+              aria-label="Previous trek photo"
               onClick={handlePrev}
             >
               {"<"}
@@ -152,6 +142,7 @@ export default function Home() {
 
             <button
               className="absolute right-1 top-1/2 -translate-y-1/2 bg-gray-800/70 active:bg-gray-800 text-white w-10 h-10 md:w-auto md:h-auto md:px-4 md:py-2 flex items-center justify-center rounded-full md:rounded"
+              aria-label="Next trek photo"
               onClick={handleNext}
             >
               {">"}
@@ -160,34 +151,21 @@ export default function Home() {
 
           {/* Caption */}
           <p className="text-center font-semibold mt-4">
-            Photos from the 2024 Startup Trek in NYC
+            Photos from the 2026 Startup Trek
           </p>
 
           {/* Image counter */}
           <p className="text-center mt-2">
             {currentIndex + 1} / {trekImages.length}
           </p>
-        </div>
-        {/* <div className="section">
-          <h2>And more</h2>
-          <p>
-            Community socials, build sessions, and startup talks.
-          </p>
-        </div> */}
+        </section>
         <div className="section">
-          <h2>Join us</h2>
-          <p className="mb-2">
-            If you&apos;re a student interested in joining our events this semester, please fill out this {" "}
-            <a
-              href="https://forms.gle/QaEMsb7BAGcBN81y7"
-              target="_blank"
-              className="underline"
-            >
-              interest form
-            </a>
-            .
-          </p>
+          <h2 id="join-us">Join Us</h2>
           <p>
+            If you&apos;re a student interested in joining our events this semester, please fill out this{" "}
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="underline">interest form</a>.
+          </p>
+          <p className="mt-3">
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">
