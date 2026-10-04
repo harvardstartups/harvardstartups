@@ -10,6 +10,7 @@ export type FounderStory = {
   announcement?: { label: string; url: string };
   duringImage: string;
   duringAlt?: string;
+  duringCrop?: { scale: number; origin: string };
   showPortrait?: boolean;
   duringCaption: string;
   portrait: string;
@@ -20,7 +21,7 @@ export type FounderStory = {
   teamAlt: string;
   careers: string;
   websiteImage: string;
-  metrics: { value: string; label: string; detail: string; source: string }[];
+  metrics: { value: string; label: string; detail: string; source: string; intro?: string }[];
 };
 
 // Public company / investor sources checked September 30, 2026.
@@ -80,8 +81,8 @@ export const heroStories: FounderStory[] = [
     company: "Intelligence / Design Arena",
     website: "https://www.designarena.ai/",
     websiteLabel: "designarena.ai",
-    description: "The company behind Design Arena, where millions of people explore and compare what AI can create.",
-    trek: "Grace joined the 2025 trek. She now co-leads Intelligence, building Design Arena and new ways to evaluate AI in the real world.",
+    description: "The company behind Design Arena, now doing $60M ARR, where millions of people explore and compare what AI can create.",
+    trek: "Grace joined the 2025 trek. She now co-leads",
     portrait: "/founders/grace_2026.jpg",
     portraitAlt: "Design Arena, cofounded by Grace Li",
     portraitCaption: "Grace Li",
@@ -90,36 +91,35 @@ export const heroStories: FounderStory[] = [
     careers: "https://www.intelligence.ai/careers",
     websiteImage: "/alumni/design-arena-website.jpg",
     metrics: [
-      { value: "$7.9M", label: "seed funding", detail: "Led by Index Ventures", source: "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" },
+      { value: "$7.9M", intro: " which is doing $60M ARR and has now raised ", label: "seed funding", detail: "Led by Index Ventures", source: "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" },
     ],
   },
-  // Temporarily hidden; uncomment to restore Nim’s founder story.
-  // {
-  //   id: "nim",
-  //   name: "Nim Ravid",
-  //   company: "Sable",
-  //   website: "https://withsable.com/",
-  //   websiteLabel: "withsable.com",
-  //   description: "AI employees that lead customer calls using real-time browser interaction and vision.",
-  //   trek: "Nim joined the 2025 Startup Trek. He now leads Sable as cofounder and CEO.",
-  //   announcement: {
-  //     label: "Series A announcement",
-  //     url: "https://sequoiacap.com/article/partnering-with-sable-closing-the-diffusion-gap",
-  //   },
-  //   duringImage: "/headshots/nim.jpg",
-  //   duringAlt: "Nim Ravid, a participant in the 2025 Startup Trek",
-  //   duringCaption: "Nim joined the 2025 Startup Trek.",
-  //   portrait: "/headshots/nim.jpg",
-  //   portraitAlt: "Nim Ravid",
-  //   portraitCaption: "Cofounder and CEO of Sable",
-  //   showPortrait: false,
-  //   teamImage: "/alumni/sable-team.webp",
-  //   teamAlt: "Sable cofounders Leon Chen, Nim Ravid, Linda He and Itamar Rocha",
-  //   careers: "https://jobs.ashbyhq.com/sable",
-  //   websiteImage: "/alumni/sable-website.png",
-  //   metrics: [
-  //     { value: "$45M", label: "raised", detail: "Led by Sequoia Capital and 8VC", source: "https://www.newswire.com/news/sable-raises-45m-to-build-the-first-ai-employee-that-can-click-see-and-explain" },
-  //   ],
-  // },
-
+  {
+    id: "nim",
+    name: "Nim Ravid",
+    company: "Sable",
+    website: "https://withsable.com/",
+    websiteLabel: "withsable.com",
+    description: "AI employees that lead customer calls using real-time browser interaction and vision.",
+    trek: "Nim joined the 2025 Startup Trek. He now leads Sable as cofounder and CEO.",
+    announcement: {
+      label: "Series A announcement",
+      url: "https://sequoiacap.com/article/partnering-with-sable-closing-the-diffusion-gap",
+    },
+    duringImage: "/founders/nim_2025_v2.png",
+    duringCrop: { scale: 4, origin: "27% 35%" },
+    duringAlt: "Nim Ravid sharing a meal on the 2025 Startup Trek",
+    duringCaption: "Nim joined the 2025 Startup Trek.",
+    portrait: "/headshots/nim.jpg",
+    portraitAlt: "Nim Ravid",
+    portraitCaption: "Cofounder and CEO of Sable",
+    showPortrait: false,
+    teamImage: "/alumni/sable-team.webp",
+    teamAlt: "Sable cofounders Leon Chen, Nim Ravid, Linda He and Itamar Rocha",
+    careers: "https://jobs.ashbyhq.com/sable",
+    websiteImage: "/alumni/sable-website.png",
+    metrics: [
+      { value: "$45M", label: "raised", detail: "Led by Sequoia Capital and 8VC", source: "https://www.newswire.com/news/sable-raises-45m-to-build-the-first-ai-employee-that-can-click-see-and-explain" },
+    ],
+  },
 ];
