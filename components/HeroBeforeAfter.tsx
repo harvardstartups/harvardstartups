@@ -187,7 +187,7 @@ export function HeroBeforeAfter({
                       style={story.duringCrop ? { transform: `scale(${story.duringCrop.scale})`, transformOrigin: story.duringCrop.origin } : undefined}
                       fill
                       className="object-cover"
-                      sizes={story.duringCrop ? "(max-width: 768px) 240vw, 90vw" : "(max-width: 768px) 90vw, 33vw"}
+                      sizes={story.duringCrop ? `(max-width: 768px) ${90 * story.duringCrop.scale}vw, ${33 * story.duringCrop.scale}vw` : "(max-width: 768px) 90vw, 33vw"}
                     />
                   </div>
                 ))}
