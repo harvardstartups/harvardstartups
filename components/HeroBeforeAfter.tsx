@@ -230,7 +230,7 @@ export function HeroBeforeAfter({
               {story.trek}{" "}
               <a href={story.website} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.company}</a>
               {story.metrics.length === 0 ? "." : story.metrics.map((metric, i) => <span key={metric.label}>
-                {metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised "}<a href={metric.source} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
+                {metric.intro ?? (metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised ")}<a href={metric.source} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
                 {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
               </span>)}
               {story.announcement && <> {" "}<a href={story.announcement.url} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.announcement.label} ↗</a></>}

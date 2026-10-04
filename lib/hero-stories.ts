@@ -21,7 +21,7 @@ export type FounderStory = {
   teamAlt: string;
   careers: string;
   websiteImage: string;
-  metrics: { value: string; label: string; detail: string; source: string }[];
+  metrics: { value: string; label: string; detail: string; source: string; intro?: string }[];
 };
 
 // Public company / investor sources checked September 30, 2026.
@@ -82,7 +82,7 @@ export const heroStories: FounderStory[] = [
     website: "https://www.designarena.ai/",
     websiteLabel: "designarena.ai",
     description: "The company behind Design Arena, now doing $60M ARR, where millions of people explore and compare what AI can create.",
-    trek: "Grace joined the 2025 trek. She now co-leads Intelligence, the company behind Design Arena, which is doing $60M ARR.",
+    trek: "Grace joined the 2025 trek. She now co-leads",
     portrait: "/founders/grace_2026.jpg",
     portraitAlt: "Design Arena, cofounded by Grace Li",
     portraitCaption: "Grace Li",
@@ -91,7 +91,7 @@ export const heroStories: FounderStory[] = [
     careers: "https://www.intelligence.ai/careers",
     websiteImage: "/alumni/design-arena-website.jpg",
     metrics: [
-      { value: "$7.9M", label: "seed funding", detail: "Led by Index Ventures", source: "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" },
+      { value: "$7.9M", intro: " which is doing $60M ARR and has now raised ", label: "seed funding", detail: "Led by Index Ventures", source: "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" },
     ],
   },
   {
