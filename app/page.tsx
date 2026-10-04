@@ -33,7 +33,7 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
             Startups at Harvard is a community of students who enjoy building products that people love.
           </p>
-          <JoinActions />
+          <JoinActions variant="hero" />
         </div>
         <SpotlightImages />
       </section>
@@ -104,19 +104,16 @@ export default function Home() {
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">10-K Reading Club</h3>
             <p>On alternating Tuesdays, we read public companies’ annual and quarterly reports, comparing businesses in the same industry and learning what drives their performance.</p>
-            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Get event updates ↗</a>
           </article>
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Member Grants</h3>
-            <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required.</p>
+            <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required. Applications are reviewed on a rolling basis.</p>
             <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for a grant ↗</a>
-            <p className="text-sm text-stone-600 mt-1">Applications are reviewed on a rolling basis.</p>
           </article>
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Startup Trek</h3>
-            <p>A fully funded, five-day trip to New York City in early 2027. Visit startups and VC firms, meet the people building them, and explore what you could build next.</p>
+            <p>A fully funded, five-day trip to New York City in early 2027. Visit startups and VC firms, meet the people building them, and explore what you could build next. Apply by October 10. Grace period through October 12.</p>
             <a href={TREK_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for Startup Trek 2027 ↗</a>
-            <p className="text-sm text-stone-600 mt-1">Apply by October 10. Grace period through October 12.</p>
           </article>
         </div>
       </section>
@@ -164,10 +161,11 @@ export default function Home() {
         </section>
         <div className="section">
           <h2 id="join-us">Join Us</h2>
-          <p>Meet other student builders, join our events, or apply for the next Startup Trek.</p>
-          <JoinActions />
-          <div className="h-5" />
           <p>
+            If you&apos;re a student interested in joining our events this semester, please fill out this{" "}
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="underline">interest form</a>.
+          </p>
+          <p className="mt-3">
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">

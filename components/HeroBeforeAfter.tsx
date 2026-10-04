@@ -158,11 +158,7 @@ export function HeroBeforeAfter({
       </div>
 
       {/* Sticky viewport */}
-      <div ref={stickyRef} className="sticky top-0 min-h-screen flex flex-col items-center justify-center px-4 py-4 md:py-16 z-10">
-        <header className="text-center max-w-xl mx-auto mb-3 md:mb-10">
-          <h2 id="alumni-heading">Former Members</h2>
-          <p className="text-sm text-stone-600">Previous trek members, and what they’re building now.</p>
-        </header>
+      <div ref={stickyRef} className="sticky top-0 min-h-[60vh] flex flex-col items-center justify-center px-4 py-4 md:py-12 z-10">
         {/* Desktop: 3-column (during | names | now) */}
         {/* Mobile: names on top, then two images side by side */}
         <div className="w-full max-w-6xl flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 lg:gap-16 items-center md:items-start">
