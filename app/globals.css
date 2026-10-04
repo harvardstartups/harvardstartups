@@ -225,5 +225,5 @@ a {
 }
 .founder-name { color: #1c1917; }
 @media (min-width: 768px) {
-  .founder-content-width { width: 100%; max-width: 72rem; }
+  .founder-content-width { width: 100%; max-width: 42rem; }
 }

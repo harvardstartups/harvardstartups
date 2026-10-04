@@ -133,7 +133,7 @@ export function HeroBeforeAfter({
           </div>
 
           {/* Desktop names: stable navigation in the center column */}
-          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-56 lg:w-72 shrink-0">
+          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-48 lg:w-64 shrink-0">
             <div
               className="flex flex-col justify-center items-center w-full overflow-visible"
               style={{
@@ -145,10 +145,6 @@ export function HeroBeforeAfter({
               >
                 {stories.map((story, i) => (
                   <div key={story.id} className="flex items-center justify-center gap-2 w-full" style={{ minHeight: `${NAME_ROW_HEIGHT_REM}rem` }}>
-                    <button type="button" onClick={() => handleTransition(i)} aria-label={`Go to ${story.name}`} aria-pressed={i === activeIndex}
-                      className={`w-11 h-11 shrink-0 flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#951929] ${i === activeIndex ? "text-stone-800" : "text-stone-300 hover:text-stone-600"}`}>
-                      <span aria-hidden className="w-2 h-2 rounded-full bg-current" />
-                    </button>
                     <a href={story.linkedin} target="_blank" rel="noopener noreferrer"
                       className={`founder-name font-serif italic text-2xl lg:text-3xl text-stone-900 whitespace-nowrap hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 transition-opacity duration-300 ${i === activeIndex ? "opacity-100" : "opacity-40 hover:opacity-75"}`}>
                       {story.name}

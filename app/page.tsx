@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main className="w-full">
       <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex flex-col items-center justify-end px-5 pt-10 pb-4 md:pt-12 md:pb-6">
-        <div className="relative z-10 w-full text-center max-w-[460px]">
+        <div className="relative z-10 w-full text-center max-w-[460px] lg:max-w-2xl">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
             Where student builders meet, learn, and share
           </h1>
@@ -53,7 +53,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className="p-5 max-w-xl mx-auto">
+      <div className="p-5 max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto">
         <div className="grid sm:grid-cols-2 gap-2 section">
           <Image
             src="/about_us/discussion.jpg"
@@ -93,9 +93,9 @@ export default function Home() {
           />
         </div>
       </div>
-      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-xl mx-auto">
+      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto">
         <h2 id="programs-heading" className="text-center mb-8">What we do</h2>
-        <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+        <div className="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10">
           <article className="border-t border-stone-300 pt-4">
             <h3 className="font-serif text-xl mb-2">Startup Series</h3>
             <p>Every other Tuesday, we explore an up-and-coming startup: its product, team, and market. We also invite founders and operators to join us for Q&amp;A.</p>
