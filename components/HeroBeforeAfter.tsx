@@ -184,9 +184,10 @@ export function HeroBeforeAfter({
                     <Image
                       src={story.duringImage}
                       alt={story.duringAlt ?? `${story.name} on the Startup Trek`}
+                      style={story.duringCrop ? { transform: `scale(${story.duringCrop.scale})`, transformOrigin: story.duringCrop.origin } : undefined}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 90vw, 33vw"
+                      sizes={story.duringCrop ? "(max-width: 768px) 240vw, 90vw" : "(max-width: 768px) 90vw, 33vw"}
                     />
                   </div>
                 ))}

@@ -10,6 +10,7 @@ export type FounderStory = {
   announcement?: { label: string; url: string };
   duringImage: string;
   duringAlt?: string;
+  duringCrop?: { scale: number; origin: string };
   showPortrait?: boolean;
   duringCaption: string;
   portrait: string;
@@ -93,33 +94,32 @@ export const heroStories: FounderStory[] = [
       { value: "$7.9M", label: "seed funding", detail: "Led by Index Ventures", source: "https://techcrunch.com/2026/08/03/designarena-creators-raise-7-9-million-to-bring-taste-to-ai-models/" },
     ],
   },
-  // Temporarily hidden; uncomment to restore Nim’s founder story.
-  // {
-  //   id: "nim",
-  //   name: "Nim Ravid",
-  //   company: "Sable",
-  //   website: "https://withsable.com/",
-  //   websiteLabel: "withsable.com",
-  //   description: "AI employees that lead customer calls using real-time browser interaction and vision.",
-  //   trek: "Nim joined the 2025 Startup Trek. He now leads Sable as cofounder and CEO.",
-  //   announcement: {
-  //     label: "Series A announcement",
-  //     url: "https://sequoiacap.com/article/partnering-with-sable-closing-the-diffusion-gap",
-  //   },
-  //   duringImage: "/headshots/nim.jpg",
-  //   duringAlt: "Nim Ravid, a participant in the 2025 Startup Trek",
-  //   duringCaption: "Nim joined the 2025 Startup Trek.",
-  //   portrait: "/headshots/nim.jpg",
-  //   portraitAlt: "Nim Ravid",
-  //   portraitCaption: "Cofounder and CEO of Sable",
-  //   showPortrait: false,
-  //   teamImage: "/alumni/sable-team.webp",
-  //   teamAlt: "Sable cofounders Leon Chen, Nim Ravid, Linda He and Itamar Rocha",
-  //   careers: "https://jobs.ashbyhq.com/sable",
-  //   websiteImage: "/alumni/sable-website.png",
-  //   metrics: [
-  //     { value: "$45M", label: "raised", detail: "Led by Sequoia Capital and 8VC", source: "https://www.newswire.com/news/sable-raises-45m-to-build-the-first-ai-employee-that-can-click-see-and-explain" },
-  //   ],
-  // },
-
+  {
+    id: "nim",
+    name: "Nim Ravid",
+    company: "Sable",
+    website: "https://withsable.com/",
+    websiteLabel: "withsable.com",
+    description: "AI employees that lead customer calls using real-time browser interaction and vision.",
+    trek: "Nim joined the 2025 Startup Trek. He now leads Sable as cofounder and CEO.",
+    announcement: {
+      label: "Series A announcement",
+      url: "https://sequoiacap.com/article/partnering-with-sable-closing-the-diffusion-gap",
+    },
+    duringImage: "/founders/nim_2025.png",
+    duringCrop: { scale: 2.7, origin: "0% 40%" },
+    duringAlt: "Nim Ravid sharing a meal on the 2025 Startup Trek",
+    duringCaption: "Nim joined the 2025 Startup Trek.",
+    portrait: "/headshots/nim.jpg",
+    portraitAlt: "Nim Ravid",
+    portraitCaption: "Cofounder and CEO of Sable",
+    showPortrait: false,
+    teamImage: "/alumni/sable-team.webp",
+    teamAlt: "Sable cofounders Leon Chen, Nim Ravid, Linda He and Itamar Rocha",
+    careers: "https://jobs.ashbyhq.com/sable",
+    websiteImage: "/alumni/sable-website.png",
+    metrics: [
+      { value: "$45M", label: "raised", detail: "Led by Sequoia Capital and 8VC", source: "https://www.newswire.com/news/sable-raises-45m-to-build-the-first-ai-employee-that-can-click-see-and-explain" },
+    ],
+  },
 ];
