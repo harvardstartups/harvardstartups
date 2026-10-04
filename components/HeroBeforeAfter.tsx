@@ -113,9 +113,9 @@ export function HeroBeforeAfter({
 
           {/* Mobile names: compact – just the active name + dot indicators */}
           <div className="flex md:hidden flex-col items-center order-first w-full py-2">
-            <p className="font-serif text-2xl italic text-stone-900 transition-all duration-300">
+            <a href={current.linkedin} target="_blank" rel="noopener noreferrer" className="founder-name font-serif text-2xl italic text-stone-900 hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2">
               {current.name}
-            </p>
+            </a>
             <div className="flex gap-2 mt-2">
               {stories.map((_, i) => (
                 <button
@@ -133,7 +133,7 @@ export function HeroBeforeAfter({
           </div>
 
           {/* Desktop names: stable navigation in the center column */}
-          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-48 lg:w-64 shrink-0">
+          <div className="hidden md:flex flex-col justify-center items-center py-4 order-2 w-56 lg:w-72 shrink-0">
             <div
               className="flex flex-col justify-center items-center w-full overflow-visible"
               style={{
@@ -144,31 +144,26 @@ export function HeroBeforeAfter({
                 className="flex flex-col justify-center items-center w-full"
               >
                 {stories.map((story, i) => (
-                  <button
-                    key={story.name + i}
-                    aria-pressed={i === activeIndex}
-                    type="button"
-                    onClick={() => handleTransition(i)}
-                    className={`
-                      w-full text-center transition-opacity duration-300 flex items-center justify-center shrink-0 font-serif italic text-2xl lg:text-3xl text-stone-900 whitespace-nowrap
-                      ${i === activeIndex
-                        ? "font-normal"
-                        : "font-normal opacity-40 hover:opacity-75"}
-                    `}
-                    style={{ minHeight: `${NAME_ROW_HEIGHT_REM}rem` }}
-                  >
-                    {story.name}
-                  </button>
+                  <div key={story.id} className="flex items-center justify-center gap-2 w-full" style={{ minHeight: `${NAME_ROW_HEIGHT_REM}rem` }}>
+                    <button type="button" onClick={() => handleTransition(i)} aria-label={`Go to ${story.name}`} aria-pressed={i === activeIndex}
+                      className={`w-11 h-11 shrink-0 flex items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#951929] ${i === activeIndex ? "text-stone-800" : "text-stone-300 hover:text-stone-600"}`}>
+                      <span aria-hidden className="w-2 h-2 rounded-full bg-current" />
+                    </button>
+                    <a href={story.linkedin} target="_blank" rel="noopener noreferrer"
+                      className={`founder-name font-serif italic text-2xl lg:text-3xl text-stone-900 whitespace-nowrap hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 transition-opacity duration-300 ${i === activeIndex ? "opacity-100" : "opacity-40 hover:opacity-75"}`}>
+                      {story.name}
+                    </a>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
 
           {/* Images: stacked on mobile, separate grid columns on desktop */}
-          <div className="flex flex-col items-center gap-2 w-4/5 md:w-full md:contents order-last">
+          <div className="flex flex-col items-center gap-2 founder-content-width md:contents order-last">
             {/* During */}
             <div className="flex flex-col items-center text-center w-full min-w-0 md:order-1">
-              <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
+              <p className="text-xl md:text-2xl text-stone-600 pb-2 md:pb-3">
                 {duringLabel}
               </p>
               <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none rounded-lg md:rounded-xl overflow-hidden bg-stone-200 shadow-lg shrink-0">
@@ -197,10 +192,10 @@ export function HeroBeforeAfter({
 
             {/* Now */}
             <div className="flex flex-col items-center text-center w-full min-w-0 md:order-3">
-              <p className="text-xs md:text-lg text-stone-600 pb-1 md:pb-3">
+              <p className="text-xl md:text-2xl text-stone-600 pb-2 md:pb-3">
                 Now
               </p>
-              <div className="relative w-full max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none">
+              <div className="relative w-full max-w-sm md:max-w-md mx-auto aspect-[4/3] max-h-[24svh] md:max-h-none">
                 {stories.map((story, i) => (
                   <div key={story.id} aria-hidden={i !== activeIndex}
                     className="absolute inset-0 transition-opacity duration-500 ease-out motion-reduce:transition-none"
@@ -223,7 +218,7 @@ export function HeroBeforeAfter({
 
         {/* All captions share a grid cell, reserving the tallest caption's height.
             Switching stories cannot resize the sticky panel or its scroll travel. */}
-        <div className="mt-5 md:mt-8 grid w-full max-w-2xl text-center text-sm leading-relaxed text-stone-600">
+        <div className="mt-5 md:mt-8 grid founder-content-width text-center text-sm leading-relaxed text-stone-600">
           {stories.map((story, index) => (
             <p key={story.id} aria-hidden={index !== activeIndex}
               className={`col-start-1 row-start-1 transition-opacity duration-500 motion-reduce:transition-none ${index === activeIndex ? "opacity-100" : "invisible opacity-0 pointer-events-none"}`}>

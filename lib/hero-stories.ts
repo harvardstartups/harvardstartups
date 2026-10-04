@@ -1,6 +1,7 @@
 export type FounderStory = {
   id: string;
   name: string;
+  linkedin: string;
   company: string;
   website: string;
   websiteLabel: string;
@@ -32,6 +33,7 @@ export const heroStories: FounderStory[] = [
     duringImage: "/founders/ron_2024.jpg",
     duringCaption: "On the first trek in 2024, Ron met Ali Partovi, who became Sapien’s first investor. Ron hosted the trek at Sapien in 2026.",
     name: "Ron Nachum",
+    linkedin: "https://www.linkedin.com/in/ron-nachum/",
     company: "Sapien",
     website: "https://sapien.ai/",
     websiteLabel: "sapien.ai",
@@ -56,6 +58,7 @@ export const heroStories: FounderStory[] = [
     duringImage: "/founders/eva_2024.jpg",
     duringCaption: "Eva met Neo on the 2024 trek. Neo went on to participate in Altara’s seed round.",
     name: "Eva Tuecke",
+    linkedin: "https://www.linkedin.com/in/evatuecke/",
     company: "Altara",
     website: "https://altara.ai/",
     websiteLabel: "altara.ai",
@@ -78,6 +81,7 @@ export const heroStories: FounderStory[] = [
     duringImage: "/founders/grace_2025.jpg",
     duringCaption: "Grace joined the 2025 trek. She now co-leads Intelligence, the company behind Design Arena.",
     name: "Grace Li",
+    linkedin: "https://www.linkedin.com/in/grace-li-721a4017b/",
     company: "Intelligence / Design Arena",
     website: "https://www.designarena.ai/",
     websiteLabel: "designarena.ai",
@@ -97,6 +101,7 @@ export const heroStories: FounderStory[] = [
   {
     id: "nim",
     name: "Nim Ravid",
+    linkedin: "https://www.linkedin.com/in/nimravid/",
     company: "Sable",
     website: "https://withsable.com/",
     websiteLabel: "withsable.com",

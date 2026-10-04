@@ -217,3 +217,13 @@ a {
   .join-actions-hero .join-action { transition: none; }
   .join-actions-hero .join-action:hover { transform: none; }
 }
+
+/* Match founder captions to the photo column on stacked layouts. */
+.founder-content-width {
+  width: 80%;
+  max-width: 24rem;
+}
+.founder-name { color: #1c1917; }
+@media (min-width: 768px) {
+  .founder-content-width { width: 100%; max-width: 72rem; }
+}

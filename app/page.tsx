@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main className="w-full">
       <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex flex-col items-center justify-end px-5 pt-10 pb-4 md:pt-12 md:pb-6">
-        <div className="relative z-10 text-center max-w-2xl">
+        <div className="relative z-10 w-full text-center max-w-[460px]">
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
             Where student builders meet, learn, and share
           </h1>
@@ -93,7 +93,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-3xl mx-auto">
+      <section aria-labelledby="programs-heading" className="px-5 py-10 max-w-xl mx-auto">
         <h2 id="programs-heading" className="text-center mb-8">What we do</h2>
         <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
           <article className="border-t border-stone-300 pt-4">
