@@ -1,6 +1,7 @@
 "use client"; // Add this at the very top of your file
 
 import { ReliableImage as Image } from "@/components/ReliableImage";
+import { LinkArrow } from "@/components/LinkArrow";
 import { useState } from "react";
 import { JoinActions } from "@/components/JoinActions";
 import { GRANT_APPLICATION_URL, JOIN_FORM_URL, TREK_APPLICATION_URL } from "@/lib/links";
@@ -26,11 +27,11 @@ export default function Home() {
   return (
     <main className="w-full">
       <section className="relative z-20 w-full min-h-[30vh] md:min-h-[40vh] flex flex-col items-center justify-end px-5 pt-10 pb-4 md:pt-12 md:pb-6">
-        <div className="relative z-10 w-full text-center max-w-[460px] lg:max-w-2xl">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-thin">
+        <div className="hero-copy relative z-10 w-full text-center max-w-[460px] lg:max-w-2xl">
+          <h1>
             Where student builders meet, learn, and share
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-stone-700 mt-3 md:mt-4">
+          <p className="text-stone-700">
             Startups at Harvard is a community of students who enjoy building products that people love.
           </p>
           <JoinActions variant="hero" />
@@ -46,8 +47,8 @@ export default function Home() {
           <p>
             We are a community of students at Harvard who are passionate about mission-driven startups and tech products that will shape the future. 
             Launched Fall 2023, we hope to provide a space for all students, regardless of background, to explore entrepreneurial careers together.
-            <br />
-            <br />
+          </p>
+          <p className="mt-4">
             We meet every Tuesday for 1 hour to discuss various topics related to building companies. 
             Our members have gone on to found companies and join early startup teams.
           </p>
@@ -97,23 +98,23 @@ export default function Home() {
         <h2 id="programs-heading" className="text-center mb-8">What we do</h2>
         <div className="grid md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-10">
           <article className="border-t border-stone-300 pt-4">
-            <h3 className="font-serif text-xl mb-2">Startup Series</h3>
+            <h3>Startup Series</h3>
             <p>Every other Tuesday, we explore an up-and-coming startup: its product, team, and market. We also invite founders and operators to join us for Q&amp;A.</p>
-            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Get event updates ↗</a>
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="text-action"><span>Get event updates</span><LinkArrow /></a>
           </article>
           <article className="border-t border-stone-300 pt-4">
-            <h3 className="font-serif text-xl mb-2">10-K Reading Club</h3>
+            <h3>10-K Reading Club</h3>
             <p>On alternating Tuesdays, we read public companies’ annual and quarterly reports, comparing businesses in the same industry and learning what drives their performance.</p>
           </article>
           <article className="border-t border-stone-300 pt-4">
-            <h3 className="font-serif text-xl mb-2">Member Grants</h3>
+            <h3>Member Grants</h3>
             <p>With support from <a href="https://xfund.com/" target="_blank" rel="noopener noreferrer" className="underline">Xfund</a>, we are piloting grants of up to $10k for early-stage, pre-revenue startups founded by members. No equity required. Applications are reviewed on a rolling basis.</p>
-            <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for a grant ↗</a>
+            <a href={GRANT_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="text-action"><span>Apply for a grant</span><LinkArrow /></a>
           </article>
           <article className="border-t border-stone-300 pt-4">
-            <h3 className="font-serif text-xl mb-2">Startup Trek</h3>
+            <h3>Startup Trek</h3>
             <p>A fully funded, five-day trip to New York City in early 2027. Visit startups and VC firms, meet the people building them, and explore what you could build next. Apply by October 10. Grace period through October 12.</p>
-            <a href={TREK_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center min-h-11 mt-2 underline underline-offset-4">Apply for Startup Trek 2027 ↗</a>
+            <a href={TREK_APPLICATION_URL} target="_blank" rel="noopener noreferrer" className="text-action"><span>Apply for Startup Trek 2027</span><LinkArrow /></a>
           </article>
         </div>
       </section>
@@ -165,7 +166,7 @@ export default function Home() {
             If you&apos;re a student interested in joining our events this semester, please fill out this{" "}
             <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer" className="underline">interest form</a>.
           </p>
-          <p className="mt-3">
+          <p className="mt-4">
             If you&apos;re part of a startup interested in engaging with our
             group, please reach out to us at{" "}
             <a href="mailto:startupsatharvard@gmail.com" className="underline">
@@ -190,8 +191,7 @@ export default function Home() {
               <a href="https://a16z.com/" target="_blank" className="underline">Andreessen Horowitz</a>, {' '}
                and others.
             </p>
-            <br />
-            <p>
+            <p className="mt-4">
               As a 501(c)(3) nonprofit organization, your contributions are tax-deductible to the extent allowable by law. 
               We accept donations via a variety of methods, flexible to your personal or corporate tax situation. Email us at <a href="mailto:startupsatharvard@gmail.com" className="underline">startupsatharvard@gmail.com</a> to arrange a donation.
             </p>
