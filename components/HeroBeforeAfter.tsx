@@ -3,6 +3,7 @@
 import { ReliableImage as Image } from "@/components/ReliableImage";
 import { useEffect, useRef, useState } from "react";
 
+import { LinkArrow } from "@/components/LinkArrow";
 import type { FounderStory } from "@/lib/hero-stories";
 
 type HeroBeforeAfterProps = {
@@ -214,7 +215,7 @@ export function HeroBeforeAfter({
 
         {/* All captions share a grid cell, reserving the tallest caption's height.
             Switching stories cannot resize the sticky panel or its scroll travel. */}
-        <div className="mt-5 md:mt-8 grid founder-content-width text-center text-sm leading-relaxed text-stone-600">
+        <div className="mt-5 md:mt-8 grid founder-content-width text-center text-stone-600">
           {stories.map((story, index) => (
             <p key={story.id} aria-hidden={index !== activeIndex}
               className={`col-start-1 row-start-1 transition-opacity duration-500 motion-reduce:transition-none ${index === activeIndex ? "opacity-100" : "invisible opacity-0 pointer-events-none"}`}>
@@ -224,7 +225,7 @@ export function HeroBeforeAfter({
                 {metric.intro ?? (metric.label === "valuation" ? " It reached a " : i === 0 ? " has now raised " : " It has now raised ")}<a href={metric.source} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{metric.value}{metric.label === "seed funding" ? " seed funding" : metric.label === "valuation" ? " valuation" : ""}</a>
                 {metric.label === "valuation" ? " in a " : ", "}{metric.detail.replace(/^(Led|Including)/, word => word.toLowerCase())}.
               </span>)}
-              {story.announcement && <> {" "}<a href={story.announcement.url} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.announcement.label} ↗</a></>}
+              {story.announcement && <> {" "}<a href={story.announcement.url} target="_blank" rel="noopener noreferrer" tabIndex={index === activeIndex ? 0 : -1} className="underline underline-offset-2">{story.announcement.label}{" "}<LinkArrow /></a></>}
             </p>
           ))}
         </div>
